@@ -1,0 +1,24 @@
+{
+    "name": "eusonlito/php-deploy",
+    "keywords": ["php","deploy"],
+    "description": "Simple PHP web panel to launch deploys",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lito",
+            "email": "lito@eordes.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPDeploy\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
