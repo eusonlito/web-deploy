@@ -13,7 +13,10 @@
         "vendor-dir": "vendor"
     },
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "maximebf/debugbar": "^1.10",
+        "gettext/gettext": "3.5.*",
+        "eusonlito/laravel-meta": "2.*"
     },
     "autoload": {
         "psr-4": {
