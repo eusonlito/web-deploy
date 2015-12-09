@@ -5,7 +5,6 @@ use Gettext\Extractors;
 use Gettext\Generators;
 use Gettext\Translations;
 use Gettext\Translator;
-
 use WebDeploy\Router;
 
 class Gettext

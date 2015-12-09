@@ -59,7 +59,7 @@ class Router
             return 'Index';
         }
 
-        return ucfirst(preg_replace_callback('/\-(.)/', function($matches) {
+        return ucfirst(preg_replace_callback('/\-(.)/', function ($matches) {
             return strtoupper($matches[1]);
         }, strtolower($controller)));
     }
@@ -70,7 +70,7 @@ class Router
             return 'Index';
         }
 
-        return preg_replace_callback('/\-(.)/', function($matches) {
+        return preg_replace_callback('/\-(.)/', function ($matches) {
             return strtoupper($matches[1]);
         }, strtolower($method));
     }

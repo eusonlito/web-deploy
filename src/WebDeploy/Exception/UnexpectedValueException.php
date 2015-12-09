@@ -1,4 +1,6 @@
 <?php
 namespace WebDeploy\Exception;
 
-class UnexpectedValueException extends \UnexpectedValueException {}
+class UnexpectedValueException extends \UnexpectedValueException
+{
+}

@@ -1,6 +1,5 @@
 <?php
 use Eusonlito\LaravelMeta\Meta;
-
 use WebDeploy\Input\Input;
 use WebDeploy\Log\Dump;
 use WebDeploy\Router\Route;

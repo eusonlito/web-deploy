@@ -29,7 +29,7 @@ class Git extends Controller
 
         $log = explode("\n", (new Shell)->exec('git log --oneline')->getLogs()[0]['success']);
 
-        $log = array_map(function($line) {
+        $log = array_map(function ($line) {
             $line = explode(' ', $line, 2);
 
             return array(
