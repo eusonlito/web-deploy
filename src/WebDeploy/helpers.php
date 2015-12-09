@@ -16,5 +16,10 @@ function template()
 
 function asset($file)
 {
-    return WebDeploy\Router\Route::getPublicUrl($file);
+    return WebDeploy\Router\Route::getPublicUrl('/assets'.$file);
+}
+
+function route($path)
+{
+    return WebDeploy\Router\Route::getPublicUrl($path);
 }

@@ -8,7 +8,8 @@ class Template
 {
     private static $instance;
 
-    private $templates;
+    private $templates = array();
+    private $shared = array();
     private $path;
 
     public static function getInstance()
@@ -25,7 +26,7 @@ class Template
     {
         $this->templates[$name] = array(
             'file' => $file,
-            'arguments' => $parameters
+            'parameters' => $parameters
         );
 
         return $this;
@@ -37,15 +38,26 @@ class Template
             throw new Exception\UnexpectedValueException(__('Template %s not exists', $file));
         }
 
-        if ($parameters) {
-            extract($parameters);
+        if ($this->shared) {
+            extract($this->shared);
         }
 
         if ($parameters = $this->getParameters($name)) {
             extract($parameters);
         }
 
+        if ($parameters) {
+            extract($parameters);
+        }
+
         require $file;
+    }
+
+    public function share($parameters = array())
+    {
+        $this->shared = array_merge($this->shared, $parameters);
+
+        return $this;
     }
 
     private function getParameters($name)

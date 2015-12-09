@@ -8,7 +8,7 @@ class Controller
 {
     public function __construct(Router $router)
     {
-        template()->set('base', 'base', array(
+        template()->share(array(
             'ROUTE' => $router->getRoute()
         ));
     }
