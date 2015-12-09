@@ -1,1 +1,1 @@
-# php-deploy
+# web-deploy

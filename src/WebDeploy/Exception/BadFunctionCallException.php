@@ -1,4 +1,4 @@
 <?php
-namespace PHPDeploy\Exception;
+namespace WebDeploy\Exception;
 
 class BadFunctionCallException extends \BadFunctionCallException {}

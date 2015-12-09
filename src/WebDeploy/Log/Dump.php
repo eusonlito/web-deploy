@@ -1,5 +1,5 @@
 <?php
-namespace PHPDeploy\Log;
+namespace WebDeploy\Log;
 
 class Dump
 {

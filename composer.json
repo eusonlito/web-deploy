@@ -10,7 +10,7 @@
         }
     ],
     "config": {
-        "vendor-dir": "vendor"
+        "vendor-dir": "src/vendor"
     },
     "require": {
         "php": ">=5.4",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPDeploy\\": "src/"
+            "WebDeploy\\": "src/"
         }
     },
     "minimum-stability": "stable"

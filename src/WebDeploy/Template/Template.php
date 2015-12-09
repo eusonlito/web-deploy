@@ -1,8 +1,8 @@
 <?php
-namespace PHPDeploy\Template;
+namespace WebDeploy\Template;
 
-use PHPDeploy\Router;
-use PHPDeploy\Exception;
+use WebDeploy\Router;
+use WebDeploy\Exception;
 
 class Template
 {

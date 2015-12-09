@@ -1,7 +1,7 @@
 <?php
-namespace PHPDeploy\Router;
+namespace WebDeploy\Router;
 
-use PHPDeploy\Exception;
+use WebDeploy\Exception;
 
 class Route
 {
@@ -9,12 +9,6 @@ class Route
 
     private static function load()
     {
-        static::$routes['base_path'] = preg_replace('|/$|', '', realpath(__DIR__.'/../../..'));
-
-        if (!is_dir(static::$routes['base_path'])) {
-            throw new Exception\UnexpectedValueException(__('Base path not exists'));
-        }
-
         if (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) === 'on')) {
             static::$routes['connection_scheme'] = 'https';
         } else {
@@ -22,10 +16,11 @@ class Route
         }
 
         static::$routes['server_name'] = getenv('SERVER_NAME');
-        static::$routes['document_root'] = static::$routes['base_path'].'/public';
-        static::$routes['public_path'] = '/'.preg_replace('|^'.getenv('DOCUMENT_ROOT').'|i', '', static::$routes['base_path'].'/public');
+        static::$routes['base_path'] = preg_replace('|/$|', '', realpath(__DIR__.'/../../..'));
+        static::$routes['src_path'] = static::$routes['base_path'].'/src';
+        static::$routes['public_path'] = '/'.preg_replace('|^'.getenv('DOCUMENT_ROOT').'|i', '', static::$routes['base_path']);
         static::$routes['public_url'] = preg_replace('|/$|', '', static::$routes['connection_scheme'].'://'.getenv('SERVER_NAME').static::$routes['public_path']);
-        static::$routes['template_path'] = self::$routes['base_path'].'/templates';
+        static::$routes['template_path'] = self::$routes['src_path'].'/templates';
     }
 
     public static function __callStatic($name, array $arguments)

@@ -1,8 +1,8 @@
 <?php
-namespace PHPDeploy\Controller;
+namespace WebDeploy\Controller;
 
-use PHPDeploy\Template\Template;
-use PHPDeploy\Router\Router;
+use WebDeploy\Template\Template;
+use WebDeploy\Router\Router;
 
 class Controller
 {

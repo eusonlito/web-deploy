@@ -1,4 +1,4 @@
 <?php
-namespace PHPDeploy\Exception;
+namespace WebDeploy\Exception;
 
 class UnexpectedValueException extends \UnexpectedValueException {}
