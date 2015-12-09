@@ -1,7 +1,15 @@
 <?php
+use Eusonlito\LaravelMeta\Meta;
+
+use WebDeploy\Input\Input;
+use WebDeploy\Log\Dump;
+use WebDeploy\Router\Route;
+use WebDeploy\Template\Html;
+use WebDeploy\Template\Template;
+
 function d($title, $message = null, $trace = null)
 {
-    WebDeploy\Log\Dump::debug($title, $message, $trace);
+    Dump::debug($title, $message, $trace);
 }
 
 function dd($title, $message = null, $trace = null)
@@ -11,15 +19,30 @@ function dd($title, $message = null, $trace = null)
 
 function template()
 {
-    return WebDeploy\Template\Template::getInstance();
+    return Template::getInstance();
 }
 
 function asset($file)
 {
-    return WebDeploy\Router\Route::getPublicUrl('/assets'.$file);
+    return Route::getPublicUrl('/assets'.$file);
 }
 
 function route($path)
 {
-    return WebDeploy\Router\Route::getPublicUrl($path);
+    return Route::getPublicUrl($path);
+}
+
+function input($name = null, $value = null)
+{
+    return (func_num_args() === 2) ? Input::set($name, $value) : Input::get($name);
+}
+
+function shellResponse($response)
+{
+    return Html::shellResponse($response);
+}
+
+function meta()
+{
+    return Meta::getInstance();
 }
