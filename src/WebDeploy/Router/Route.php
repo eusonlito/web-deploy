@@ -21,6 +21,7 @@ class Route
         static::$routes['public_path'] = '/'.preg_replace('|^'.getenv('DOCUMENT_ROOT').'|i', '', static::$routes['base_path']);
         static::$routes['public_url'] = preg_replace('|/$|', '', static::$routes['connection_scheme'].'://'.getenv('SERVER_NAME').static::$routes['public_path']);
         static::$routes['template_path'] = self::$routes['src_path'].'/templates';
+        static::$routes['storage_path'] = self::$routes['base_path'].'/storage';
     }
 
     public static function __callStatic($name, array $arguments)

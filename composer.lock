@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ed3571d9815c064a8e3528fec22cd8f8",
+    "hash": "dd09ab1798c15e1dbcd50841791350d0",
     "content-hash": "7d4e8d0356382a0dfcd35ca8dea3767c",
     "packages": [
         {
             "name": "eusonlito/laravel-meta",
-            "version": "v2.0.8",
+            "version": "v2.0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eusonlito/laravel-Meta.git",
-                "reference": "52082f6bf97677d7c8a8daec865ffee534f5e98d"
+                "reference": "c3b69cd19b5b39070862aed348793bf0e79a0b79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eusonlito/laravel-Meta/zipball/52082f6bf97677d7c8a8daec865ffee534f5e98d",
-                "reference": "52082f6bf97677d7c8a8daec865ffee534f5e98d",
+                "url": "https://api.github.com/repos/eusonlito/laravel-Meta/zipball/c3b69cd19b5b39070862aed348793bf0e79a0b79",
+                "reference": "c3b69cd19b5b39070862aed348793bf0e79a0b79",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "meta",
                 "tags"
             ],
-            "time": "2015-08-22 18:47:37"
+            "time": "2015-12-09 18:53:48"
         },
         {
             "name": "gettext/gettext",

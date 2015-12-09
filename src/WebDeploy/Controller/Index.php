@@ -5,6 +5,6 @@ class Index extends Controller
 {
     public function index()
     {
-        return template()->set('body', 'pages.index');
+        return self::page('body', 'index.index');
     }
 }
