@@ -1,6 +1,6 @@
 /node_modules
 /assets/vendor
-/vendor
+/src/vendor
 
 *.sh
 *.swp

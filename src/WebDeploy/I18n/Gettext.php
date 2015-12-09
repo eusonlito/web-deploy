@@ -1,12 +1,12 @@
 <?php
-namespace PHPDeploy\I18n;
+namespace WebDeploy\I18n;
 
 use Gettext\Extractors;
 use Gettext\Generators;
 use Gettext\Translations;
 use Gettext\Translator;
 
-use PHPDeploy\Router;
+use WebDeploy\Router;
 
 class Gettext
 {

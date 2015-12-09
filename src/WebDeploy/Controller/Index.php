@@ -1,5 +1,5 @@
 <?php
-namespace PHPDeploy\Controller;
+namespace WebDeploy\Controller;
 
 class Index extends Controller
 {

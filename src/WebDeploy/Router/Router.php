@@ -1,7 +1,7 @@
 <?php
-namespace PHPDeploy\Router;
+namespace WebDeploy\Router;
 
-use PHPDeploy\Exception;
+use WebDeploy\Exception;
 
 class Router
 {
@@ -23,7 +23,7 @@ class Router
 
     public function toController()
     {
-        $class = '\\PHPDeploy\\Controller\\'.$this->parsed['controller'];
+        $class = '\\WebDeploy\\Controller\\'.$this->parsed['controller'];
 
         if (!class_exists($class)) {
             throw new Exception\NotFoundException(__('Controller %s not exists', $this->parsed['controller']));

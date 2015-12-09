@@ -1,11 +1,7 @@
 {
-  "name": "PHP-Deploy",
+  "name": "Web-Deploy",
   "version": "0.1",
-  "homepage": "https://github.com/eusonlito/php-deploy",
+  "homepage": "https://github.com/eusonlito/web-deploy",
   "authors": [ "nitsnets studios" ],
-  "license": "MIT",
-  "dependencies": {
-    "jquery": "2.*",
-    "bootstrap": "3.3.*"
-  }
+  "license": "MIT"
 }

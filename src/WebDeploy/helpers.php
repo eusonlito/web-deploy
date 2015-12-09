@@ -1,7 +1,7 @@
 <?php
 function d($title, $message = null, $trace = null)
 {
-    PHPDeploy\Log\Dump::debug($title, $message, $trace);
+    WebDeploy\Log\Dump::debug($title, $message, $trace);
 }
 
 function dd($title, $message = null, $trace = null)
@@ -11,10 +11,10 @@ function dd($title, $message = null, $trace = null)
 
 function template()
 {
-    return PHPDeploy\Template\Template::getInstance();
+    return WebDeploy\Template\Template::getInstance();
 }
 
 function asset($file)
 {
-    return PHPDeploy\Router\Route::getPublicUrl($file);
+    return WebDeploy\Router\Route::getPublicUrl($file);
 }

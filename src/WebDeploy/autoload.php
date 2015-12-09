@@ -1,6 +1,6 @@
 <?php
 spl_autoload_register(function ($className) {
-    if (strpos($className, 'PHPDeploy') !== 0) {
+    if (strpos($className, 'WebDeploy') !== 0) {
         return;
     }
 
