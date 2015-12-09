@@ -1,5 +1,6 @@
-/node_modules
 /assets/vendor
+/config/custom
+/node_modules
 /src/vendor
 /storage/*/*
 

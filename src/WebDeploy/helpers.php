@@ -1,5 +1,6 @@
 <?php
 use Eusonlito\LaravelMeta\Meta;
+use WebDeploy\Config\Config;
 use WebDeploy\Input\Input;
 use WebDeploy\Log\Dump;
 use WebDeploy\Router\Route;
@@ -44,4 +45,9 @@ function shellResponse($response)
 function meta()
 {
     return Meta::getInstance();
+}
+
+function config($name = null, $value = null)
+{
+    return (func_num_args() === 2) ? Config::set($name, $value) : Config::get($name);
 }

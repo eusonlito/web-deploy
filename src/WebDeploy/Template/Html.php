@@ -23,6 +23,7 @@ class Html
                 continue;
             }
 
+            $html .= '<div class="command">';
             $html .= '<pre>$ '.$values['command'].'</pre>';
 
             if ($values['success']) {
@@ -32,6 +33,8 @@ class Html
             if ($values['error']) {
                 $html .= '<pre class="bg-danger">'.$values['error'].'</pre>';
             }
+
+            $html .= '</div>';
         }
 
         return $html;

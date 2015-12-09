@@ -11,9 +11,18 @@ class Shell
 
     public function __construct()
     {
-        $this->cd();
+        $this->setUp();
 
         return $this;
+    }
+
+    private function setUp()
+    {
+        if (!is_dir($logs = Route::getStoragePath('/logs'))) {
+            mkdir($logs, 0755, true);
+        }
+
+        $this->cd(config('git')['path']);
     }
 
     public function cd($path = null)
