@@ -59,9 +59,7 @@ class Router
             return 'Index';
         }
 
-        return ucfirst(preg_replace_callback('/\-(.)/', function ($matches) {
-            return strtoupper($matches[1]);
-        }, strtolower($controller)));
+        return ucfirst(camelCase($controller));
     }
 
     private function parseMethod($method)
@@ -70,8 +68,6 @@ class Router
             return 'Index';
         }
 
-        return preg_replace_callback('/\-(.)/', function ($matches) {
-            return strtoupper($matches[1]);
-        }, strtolower($method));
+        return camelCase($method);
     }
 }

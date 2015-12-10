@@ -22,5 +22,10 @@
             "WebDeploy\\": "src/"
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "php command compile"
+        ]
+    },
     "minimum-stability": "stable"
 }
