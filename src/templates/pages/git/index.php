@@ -1,4 +1,10 @@
 <h1 class="page-header">
+    <?= __('Base Path'); ?>
+</h1>
+
+<pre class="bg-success"><?= $path; ?></pre>
+
+<h1 class="page-header">
     <?= __('Current Branch'); ?>
 </h1>
 

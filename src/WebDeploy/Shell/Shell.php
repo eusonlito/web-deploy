@@ -42,6 +42,7 @@ class Shell
     public function exec($cmd)
     {
         $log = $this->getLogFile();
+
         $success = $log.'.success';
         $error = $log.'.error';
 

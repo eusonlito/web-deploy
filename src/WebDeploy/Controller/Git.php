@@ -6,8 +6,25 @@ use WebDeploy\Shell\Shell;
 
 class Git extends Controller
 {
+    private function check()
+    {
+        if ((new Shell)->exec('which git')->getLogs()[0]['success']) {
+            return true;
+        }
+
+        self::page('body', 'git.layout');
+
+        return self::template('content', 'molecules.error', array(
+            'message' => __('GIT is not installed')
+        ));
+    }
+
     public function index()
     {
+        if (is_object($error = $this->check())) {
+            return $error;
+        }
+
         meta()->meta('title', 'GIT Status');
 
         $log = (new Shell)
@@ -17,26 +34,32 @@ class Git extends Controller
             ->getLogs();
 
         return self::content('git.index', array(
-            'branch' => $log[0],
-            'commit' => $log[1],
-            'status' => $log[2]
+            'path' => config('git')['path'],
+            'branch' => array_shift($log),
+            'commit' => array_shift($log),
+            'status' => array_shift($log)
         ));
     }
 
     public function update()
     {
-        meta()->meta('title', 'GIT Update');
+        if (is_object($error = $this->check())) {
+            return $error;
+        }
 
-        $log = explode("\n", (new Shell)->exec('git log --oneline')->getLogs()[0]['success']);
+        meta()->meta('title', 'GIT Update');
 
         $log = array_map(function ($line) {
             $line = explode(' ', $line, 2);
 
             return array(
                 'hash' => $line[0],
-                'message' => $line[1]
+                'message' => preg_replace('/\s\+[0-9]{4}\s/', ' ', $line[1])
             );
-        }, $log);
+        }, explode("\n", (new Shell)
+            ->exec('git log --date=iso --pretty=format:"%h %cd [%an] %s"')
+            ->getLogs()[0]['success'])
+        );
 
         return self::content('git.update', array(
             'log' => $log,
@@ -46,6 +69,10 @@ class Git extends Controller
 
     public function log()
     {
+        if (is_object($error = $this->check())) {
+            return $error;
+        }
+
         meta()->meta('title', 'GIT Log');
 
         $last = (int)input('last') ?: 50;
