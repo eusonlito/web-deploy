@@ -27,7 +27,7 @@ class Composer extends Processor
     protected function exec($cmd)
     {
         return (new Shell)
-            ->baseCommand('export COMPOSER_HOME="'.Route::getBasePath().'";')
+            ->baseCommand('export COMPOSER_HOME="'.config('git')['path'].'";')
             ->exec($cmd)
             ->getLog();
     }
