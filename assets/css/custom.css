@@ -2,9 +2,15 @@
     border-radius: 0 !important;
 }
 
+a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a,
+.bs-docs-nav .navbar-nav > .active > a {
+    color: #058ea1;
+}
+
 .bs-docs-header {
     padding-top: 20px;
     padding-bottom: 20px;
+    background: #058ea1;
 }
 
 .bs-docs-header h1 {
