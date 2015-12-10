@@ -12,20 +12,20 @@ class Git extends Processor
         }
 
         switch ($processor) {
-            case 'git-fetch':
-                $status = $this->gitFetch();
-                break;
-
             case 'git-pull':
                 $status = $this->gitPull();
                 break;
 
-            case 'git-stash':
-                $status = $this->gitStash();
+            case 'git-reset':
+                $status = $this->gitReset();
                 break;
 
             case 'git-checkout':
                 $status = $this->gitCheckout();
+                break;
+
+            case 'git-branch':
+                $status = $this->gitBranch();
                 break;
 
             default:
@@ -40,19 +40,14 @@ class Git extends Processor
         return (new Shell)->log(true)->exec($cmd)->getLogs()[0];
     }
 
-    private function gitFetch()
-    {
-        return $this->exec('git fetch --all');
-    }
-
     private function gitPull()
     {
         return $this->exec('git pull');
     }
 
-    private function gitStash()
+    private function gitReset()
     {
-        return $this->exec('git stash');
+        return $this->exec('git reset --hard');
     }
 
     private function gitCheckout()
@@ -62,5 +57,14 @@ class Git extends Processor
         }
 
         return $this->exec('git checkout '.$hash);
+    }
+
+    private function gitBranch()
+    {
+        if (!($name = input('branch-name'))) {
+            return null;
+        }
+
+        return $this->exec('git checkout '.$name);
     }
 }
