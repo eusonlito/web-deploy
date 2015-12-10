@@ -17,5 +17,6 @@
 }
 
 .command > pre:first-child {
-    background-color: #E0E0E0;
+    background-color: #666;
+    color: #FFF;
 }
