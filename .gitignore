@@ -1,4 +1,5 @@
 /assets/vendor
+/cache
 /config/custom
 /node_modules
 /src/vendor

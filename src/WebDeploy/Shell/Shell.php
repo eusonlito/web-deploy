@@ -6,6 +6,7 @@ use WebDeploy\Router\Route;
 class Shell
 {
     private $base;
+    private $path;
     private $log = false;
     private $logs = array();
 
@@ -27,7 +28,14 @@ class Shell
 
     public function cd($path)
     {
-        $this->base = $path;
+        $this->path = $path;
+
+        return $this;
+    }
+
+    public function baseCommand($cmd)
+    {
+        $this->base = $cmd;
 
         return $this;
     }
@@ -64,9 +72,10 @@ class Shell
 
     private function getCMD($cmd)
     {
-        return 'cd "'.escapeshellcmd($this->base).'";'
-            .'export HOME="'.$this->base.'";'
+        return 'cd "'.escapeshellcmd($this->path).'";'
+            .'export HOME="'.$this->path.'";'
             .'export LC_ALL=es_ES.UTF-8;'
+            .$this->base
             .$cmd;
     }
 
