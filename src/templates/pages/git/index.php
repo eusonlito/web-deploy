@@ -2,7 +2,7 @@
     <?= __('Base Path'); ?>
 </h1>
 
-<pre class="bg-success"><?= $path; ?></pre>
+<?= shellResponse($path); ?>
 
 <h1 class="page-header">
     <?= __('Current Branch'); ?>

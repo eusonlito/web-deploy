@@ -34,13 +34,14 @@ class Admin extends Controller
         meta()->meta('title', 'Web Deploy Status');
 
         $logs = $this->shell()
+            ->exec('pwd')
             ->exec('git rev-parse --abbrev-ref HEAD')
             ->exec('git log --name-status HEAD^..HEAD')
             ->exec('git status')
             ->getLogs();
 
         return self::content('admin.index', array(
-            'path' => Route::getBasePath(),
+            'path' => array_shift($logs),
             'branch' => array_shift($logs),
             'commit' => array_shift($logs),
             'status' => array_shift($logs)

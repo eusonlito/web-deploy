@@ -28,13 +28,14 @@ class Git extends Controller
         meta()->meta('title', 'GIT Status');
 
         $log = (new Shell)
+            ->exec('pwd')
             ->exec('git rev-parse --abbrev-ref HEAD')
             ->exec('git log --name-status HEAD^..HEAD')
             ->exec('git status')
             ->getLogs();
 
         return self::content('git.index', array(
-            'path' => config('git')['path'],
+            'path' => array_shift($log),
             'branch' => array_shift($log),
             'commit' => array_shift($log),
             'status' => array_shift($log)
