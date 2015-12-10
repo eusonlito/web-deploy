@@ -35,22 +35,22 @@ class Git extends Processor
         return array($processor => $status);
     }
 
-    private function exec($cmd)
+    protected function exec($cmd)
     {
         return (new Shell)->log(true)->exec($cmd)->getLogs()[0];
     }
 
-    private function gitPull()
+    protected function gitPull()
     {
         return $this->exec('git pull');
     }
 
-    private function gitReset()
+    protected function gitReset()
     {
         return $this->exec('git reset --hard');
     }
 
-    private function gitCheckout()
+    protected function gitCheckout()
     {
         if (!($hash = input('commit-hash'))) {
             return null;
@@ -59,7 +59,7 @@ class Git extends Processor
         return $this->exec('git checkout '.$hash);
     }
 
-    private function gitBranch()
+    protected function gitBranch()
     {
         if (!($name = input('branch-name'))) {
             return null;
