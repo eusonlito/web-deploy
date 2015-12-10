@@ -9,25 +9,25 @@ class Shell
     private $log = false;
     private $logs = array();
 
-    public function __construct()
+    public function __construct($path = null)
     {
-        $this->setUp();
+        $this->setUp($path);
 
         return $this;
     }
 
-    private function setUp()
+    private function setUp($path = null)
     {
         if (!is_dir($logs = Route::getStoragePath('/logs'))) {
             mkdir($logs, 0755, true);
         }
 
-        $this->cd(config('git')['path']);
+        $this->cd($path ?: config('git')['path'] ?: Route::getBasePath());
     }
 
-    public function cd($path = null)
+    public function cd($path)
     {
-        $this->base = $path ?: Route::getBasePath();
+        $this->base = $path;
 
         return $this;
     }
