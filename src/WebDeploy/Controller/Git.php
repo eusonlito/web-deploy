@@ -47,7 +47,14 @@ class Git extends Controller
             return $error;
         }
 
-        meta()->meta('title', 'GIT Update');
+        $processor = (new Processor\Admin)->update();
+
+        meta()->meta('title', 'Web Deploy Update');
+
+        $logs = (new Shell)
+            ->exec('git log --date=iso --pretty=format:"%h %cd [%an] %s"')
+            ->exec('git branch')
+            ->getLogs();
 
         $log = array_map(function ($line) {
             $line = explode(' ', $line, 2);
@@ -56,14 +63,19 @@ class Git extends Controller
                 'hash' => $line[0],
                 'message' => preg_replace('/\s\+[0-9]{4}\s/', ' ', $line[1])
             );
-        }, explode("\n", (new Shell)
-            ->exec('git log --date=iso --pretty=format:"%h %cd [%an] %s"')
-            ->getLogs()[0]['success'])
-        );
+        }, explode("\n", array_shift($logs)['success']));
+
+        $branches = array_map(function ($line) {
+            return array(
+                'current' => preg_match('/^\*/', $line),
+                'name' => trim(preg_replace('/^\* /', '', $line))
+            );
+        }, explode("\n", array_shift($logs)['success']));
 
         return self::content('git.update', array(
             'log' => $log,
-            'processor' => (new Processor\Git)->update()
+            'branches' => $branches,
+            'processor' => $processor
         ));
     }
 
