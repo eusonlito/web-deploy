@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a href="<?= route('/'); ?>" class="navbar-brand"><?= __('Web Deploy'); ?></a>
+            <a href="<?= route('/'); ?>" class="navbar-brand <?= (strpos($ROUTE, 'index-') === 0) ? 'active' : ''; ?>"><?= __('Web Deploy'); ?></a>
         </div>
 
         <nav id="bs-navbar" class="collapse navbar-collapse">
