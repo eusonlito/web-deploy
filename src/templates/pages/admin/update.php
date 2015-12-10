@@ -10,6 +10,16 @@
     <?= isset($processor['git-pull']) ? shellResponse($processor['git-pull']) : ''; ?>
 
     <h1 class="page-header">
+        <?= __('Update Composer packages'); ?>
+
+        <button type="submit" name="processor" value="composer-install" class="btn btn-default pull-right">
+            <?= __('Composer UPDATE'); ?>
+        </button>
+    </h1>
+
+    <?= isset($processor['composer-install']) ? shellResponse($processor['composer-install']) : ''; ?>
+
+    <h1 class="page-header">
         <?= __('Reset code changes'); ?>
 
         <button type="submit" name="processor" value="git-reset" class="btn btn-danger pull-right">
