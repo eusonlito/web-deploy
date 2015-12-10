@@ -3,6 +3,7 @@
         <ul class="bs-docs-footer-links pull-right">
             <li><?= __('%s seconds', round(microtime(true) - WD_TIME, 4)); ?></li>
             <li><?= __('%s MiB', round(memory_get_peak_usage(true) / 1024 / 1024, 4)); ?></li>
+            <li><?= __('%s files', count(get_included_files())); ?></li>
         </ul>
 
         <ul class="bs-docs-footer-links">
