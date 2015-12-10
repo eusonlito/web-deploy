@@ -1,7 +1,7 @@
 <?php
 namespace WebDeploy\Processor;
 
-use WebDeploy\Shell\Shell;
+use WebDeploy\Repository;
 
 class Git extends Processor
 {
@@ -35,19 +35,19 @@ class Git extends Processor
         return array($processor => $status);
     }
 
-    protected function exec($cmd)
+    protected function exec($function, $parameter = null)
     {
-        return (new Shell)->log(true)->exec($cmd)->getLogs()[0];
+        return (new Repository\Git(null, true))->$function($parameter)->getShellAndLog();
     }
 
     protected function gitPull()
     {
-        return $this->exec('git pull');
+        return $this->exec('pull');
     }
 
     protected function gitReset()
     {
-        return $this->exec('git reset --hard');
+        return $this->exec('reset');
     }
 
     protected function gitCheckout()
@@ -56,7 +56,7 @@ class Git extends Processor
             return null;
         }
 
-        return $this->exec('git checkout '.$hash);
+        return $this->exec('checkout', $hash);
     }
 
     protected function gitBranch()
@@ -65,6 +65,6 @@ class Git extends Processor
             return null;
         }
 
-        return $this->exec('git checkout '.$name);
+        return $this->exec('checkout', $name);
     }
 }
