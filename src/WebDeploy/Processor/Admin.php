@@ -1,13 +1,13 @@
 <?php
 namespace WebDeploy\Processor;
 
+use WebDeploy\Repository;
 use WebDeploy\Router\Route;
-use WebDeploy\Shell\Shell;
 
 class Admin extends Git
 {
-    protected function exec($cmd)
+    protected function exec($function, $parameter = null)
     {
-        return (new Shell(Route::getBasePath()))->log(true)->exec($cmd)->getLogs()[0];
+        return (new Repository\Git(Route::getBasePath(), true))->$function($parameter)->getShellAndLog();
     }
 }

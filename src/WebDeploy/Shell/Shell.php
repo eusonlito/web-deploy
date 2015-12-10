@@ -70,10 +70,15 @@ class Shell
             .$cmd;
     }
 
+    public function getLog()
+    {
+        return end($this->logs);
+    }
+
     public function getLogs($offset = 0, $length = null)
     {
         if ($offset || $length) {
-            return array_slice($this->logs, $offset, $length, true);
+            return array_slice($this->logs, $offset, $length);
         }
 
         return $this->logs;
