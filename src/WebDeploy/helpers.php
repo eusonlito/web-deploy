@@ -17,6 +17,13 @@ function dd($title, $message = null, $trace = null)
     die(d($title, $message, $trace));
 }
 
+function camelCase($string)
+{
+    return preg_replace_callback('/\-(.)/', function ($matches) {
+        return strtoupper($matches[1]);
+    }, strtolower($string));
+}
+
 function template()
 {
     return Template::getInstance();

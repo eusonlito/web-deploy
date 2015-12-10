@@ -1,5 +1,5 @@
 <?php
 return array(
-    'path' => realpath(__DIR__.'/..'),
+    'path' => WD_BASE_PATH,
     'log_history' => 50
 );

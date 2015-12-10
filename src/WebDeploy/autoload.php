@@ -4,7 +4,7 @@ spl_autoload_register(function ($className) {
         return;
     }
 
-    $fileName = dirname(__DIR__).'/';
+    $fileName = WD_BASE_PATH.'/src/';
 
     if ($lastNsPos = strripos($className, '\\')) {
         $namespace = substr($className, 0, $lastNsPos);
