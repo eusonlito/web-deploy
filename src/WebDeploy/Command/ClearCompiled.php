@@ -1,7 +1,10 @@
 <?php
 namespace WebDeploy\Command;
 
-use RecursiveDirectoryIterator, RecursiveIteratorIterator, RecursiveRegexIterator, RegexIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
 
 class ClearCompiled
 {
