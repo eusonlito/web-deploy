@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/src/WebDeploy/loader.php';
+require __DIR__.'/src/WebDeploy/bootstrap.php';
 
 (new WebDeploy\Router\Router(getenv('REQUEST_URI')))
     ->toController()
