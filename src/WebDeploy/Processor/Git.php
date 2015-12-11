@@ -2,6 +2,7 @@
 namespace WebDeploy\Processor;
 
 use WebDeploy\Repository;
+use WebDeploy\Shell\Shell;
 
 class Git extends Processor
 {
@@ -26,6 +27,10 @@ class Git extends Processor
 
             case 'git-branch':
                 $status = $this->gitBranch();
+                break;
+
+            case 'composer-install':
+                $status = $this->composerInstall();
                 break;
 
             default:
@@ -66,5 +71,10 @@ class Git extends Processor
         }
 
         return $this->exec('checkout', $name);
+    }
+
+    protected function composerInstall()
+    {
+        return (new Repository\Composer(null, true))->install()->getShellAndLog();
     }
 }

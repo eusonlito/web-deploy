@@ -28,11 +28,6 @@ class Admin extends Git
 
     protected function composerInstall()
     {
-        $path = Route::getBasePath();
-
-        return (new Shell($path))
-            ->baseCommand('export COMPOSER_HOME="'.$path.'";')
-            ->exec('composer install')
-            ->getLog();
+        return (new Repository\Composer(Route::getBasePath(), true))->install()->getShellAndLog();
     }
 }

@@ -3,32 +3,11 @@ namespace WebDeploy\Repository;
 
 use WebDeploy\Shell\Shell;
 
-class Git
+class Git extends Repository
 {
-    private $path;
-    private $shell;
-
-    public function __construct($path = null, $log = false)
+    public static function exists()
     {
-        $this->path = $path;
-        $this->shell = (new Shell($path))->log($log);
-
-        return $this;
-    }
-
-    public function getShell()
-    {
-        return $this->shell;
-    }
-
-    public function getShellAndLogs()
-    {
-        return $this->shell->getLogs();
-    }
-
-    public function getShellAndLog()
-    {
-        return $this->shell->getLog();
+        return (new Shell)->exec('which git')->getLog()['success'];
     }
 
     public function currentBranch()
@@ -126,12 +105,5 @@ class Git
                 'name' => trim(preg_replace('/^\* /', '', $line))
             );
         }, explode("\n", (new self($this->path))->getBranches()['success']));
-    }
-
-    private function exec($cmd)
-    {
-        $this->shell->exec($cmd);
-
-        return $this;
     }
 }

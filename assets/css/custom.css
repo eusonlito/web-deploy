@@ -22,6 +22,14 @@ a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a,
     margin: 0;
 }
 
+.tab-content > .tab-pane {
+    padding: 20px 0;
+}
+
+.panel-title.with-button {
+    line-height: 35px;
+}
+
 .command > pre {
     margin-bottom: 0;
     border: none;

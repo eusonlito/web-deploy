@@ -1,23 +1,39 @@
-<h1 class="page-header">
-    <?= __('Base Path'); ?>
-</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Base Path'); ?></h3>
+    </div>
 
-<?= shellResponse($path); ?>
+    <div class="panel-body">
+        <?= shellResponse($path); ?>
+    </div>
+</div>
 
-<h1 class="page-header">
-    <?= __('Current Branch'); ?>
-</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Current Branch'); ?></h3>
+    </div>
 
-<?= shellResponse($branch); ?>
+    <div class="panel-body">
+        <?= shellResponse($branch); ?>
+    </div>
+</div>
 
-<h1 class="page-header">
-    <?= __('Last commit'); ?>
-</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Last commit'); ?></h3>
+    </div>
 
-<?= shellResponse($commit); ?>
+    <div class="panel-body">
+        <?= shellResponse($commit); ?>
+    </div>
+</div>
 
-<h1 class="page-header">
-    <?= __('Project status'); ?>
-</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Project status'); ?></h3>
+    </div>
 
-<?= shellResponse($status); ?>
+    <div class="panel-body">
+        <?= shellResponse($status); ?>
+    </div>
+</div>
