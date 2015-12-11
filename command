@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-require __DIR__.'/src/WebDeploy/loader.php';
+require __DIR__.'/src/WebDeploy/bootstrap.php';
 
 array_shift($argv);
 
