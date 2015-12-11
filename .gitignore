@@ -1,3 +1,4 @@
+/.composer
 /assets/vendor
 /cache
 /config/custom
