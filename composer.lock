@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3c53099233433ec5616240f780c5f181",
-    "content-hash": "0ed812ad0458eb598ca001b7480a4c70",
+    "hash": "7d52b9b251ee7a6b98925d082ebd4854",
+    "content-hash": "220d0d103e6d0baa27cfb7ca8e45545d",
     "packages": [
         {
             "name": "eusonlito/laravel-meta",
@@ -51,6 +51,58 @@
                 "tags"
             ],
             "time": "2015-12-09 18:53:48"
+        },
+        {
+            "name": "eusonlito/laravel-packer",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eusonlito/laravel-Packer.git",
+                "reference": "d4741de2ff190f244569c865f6d303b8501ed218"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eusonlito/laravel-Packer/zipball/d4741de2ff190f244569c865f6d303b8501ed218",
+                "reference": "d4741de2ff190f244569c865f6d303b8501ed218",
+                "shasum": ""
+            },
+            "require": {
+                "imagecow/imagecow": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eusonlito\\LaravelPacker\\": "src/Eusonlito/LaravelPacker/"
+                },
+                "classmap": [
+                    "src/Eusonlito/LaravelPacker/Processors/"
+                ],
+                "files": [
+                    "src/Eusonlito/LaravelPacker/Exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lito",
+                    "email": "lito@eordes.com"
+                }
+            ],
+            "description": "A package for pack css and javascript files",
+            "keywords": [
+                "laravel",
+                "minify",
+                "packer"
+            ],
+            "time": "2015-12-11 15:57:25"
         },
         {
             "name": "gettext/gettext",
@@ -164,6 +216,48 @@
                 "unicode"
             ],
             "time": "2015-03-27 11:32:41"
+        },
+        {
+            "name": "imagecow/imagecow",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarotero/imagecow.git",
+                "reference": "8e429a08b600a3d895b1591cd1486e7b85c16009"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarotero/imagecow/zipball/8e429a08b600a3d895b1591cd1486e7b85c16009",
+                "reference": "8e429a08b600a3d895b1591cd1486e7b85c16009",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Imagecow\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP library to manipulate and generate responsive images",
+            "homepage": "https://github.com/oscarotero/imagecow/",
+            "keywords": [
+                "image"
+            ],
+            "time": "2015-09-07 21:30:06"
         }
     ],
     "packages-dev": [],
