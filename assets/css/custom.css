@@ -39,3 +39,11 @@ a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a,
     background-color: #666;
     color: #FFF;
 }
+
+@media (max-width: 479px) {
+    .xxs-block {
+        float: none !important;
+        display: block !important;
+        width: 100%;
+    }
+}

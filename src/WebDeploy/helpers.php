@@ -1,5 +1,7 @@
 <?php
 use Eusonlito\LaravelMeta\Meta;
+use Eusonlito\LaravelPacker\Packer;
+
 use WebDeploy\Config\Config;
 use WebDeploy\Input\Input;
 use WebDeploy\Log\Dump;
@@ -52,6 +54,11 @@ function shellResponse($response)
 function meta()
 {
     return Meta::getInstance();
+}
+
+function packer()
+{
+    return Packer::getInstance(config('packer'));
 }
 
 function config($name = null, $value = null)
