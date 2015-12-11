@@ -24,7 +24,13 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "php command clear-compiled",
+            "composer dump-autoload --optimize",
             "php command compile"
+        ],
+        "post-update-cmd": [
+            "php command clear-compiled",
+            "composer dump-autoload --optimize"
         ]
     },
     "minimum-stability": "stable"
