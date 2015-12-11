@@ -10,7 +10,7 @@
             <li><a href="https://github.com/eusonlito/web-deploy">GitHub</a></li>
         </ul>
 
-        <p>Code licensed <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, docs <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+        <p><?= __('Code licensed <a rel="license" href="https://github.com/eusonlito/web-deploy/blob/master/LICENSE" target="_blank">MIT</a>.'); ?></p>
     </div>
 </footer>
 
