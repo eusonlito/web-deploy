@@ -35,7 +35,7 @@ class Compile
 
     private function getFileCode($file)
     {
-        $code = "\n".str_replace('<?php', '', file_get_contents($file))."\n";
+        $code = "\n".preg_replace('/^<\?php/', '', file_get_contents($file))."\n";
 
         if (preg_match("/\nnamespace /", $code)) {
             return preg_replace("/\nnamespace\s+([^;]+);/", "\nnamespace $1 {", $code)."}\n";
