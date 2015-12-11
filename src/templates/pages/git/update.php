@@ -4,7 +4,7 @@
             <h3 class="panel-title with-button">
                 <?= __('Update code to last version'); ?>
 
-                <button type="submit" name="processor" value="git-pull" class="btn btn-default pull-right">
+                <button type="submit" name="processor" value="git-pull" class="btn btn-success pull-right">
                     <?= __('Git PULL'); ?>
                 </button>
             </h3>
@@ -22,7 +22,7 @@
             <h3 class="panel-title with-button">
                 <?= __('Update Composer packages'); ?>
 
-                <button type="submit" name="processor" value="composer-install" class="btn btn-default pull-right">
+                <button type="submit" name="processor" value="composer-install" class="btn btn-success pull-right">
                     <?= __('Composer UPDATE'); ?>
                 </button>
             </h3>
@@ -71,7 +71,7 @@
                 </select>
 
                 <span class="input-group-btn">
-                    <button type="submit" name="processor" value="git-revert" class="btn btn-default pull-right">
+                    <button type="submit" name="processor" value="git-revert" class="btn btn-warning pull-right">
                         <?= __('Git REVERT'); ?>
                     </button>
                 </span>
@@ -97,7 +97,7 @@
                 </select>
 
                 <span class="input-group-btn">
-                    <button type="submit" name="processor" value="git-branch" class="btn btn-default pull-right">
+                    <button type="submit" name="processor" value="git-branch" class="btn btn-warning pull-right">
                         <?= __('Git BRANCH'); ?>
                     </button>
                 </span>
