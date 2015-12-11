@@ -6,7 +6,7 @@
 /node_modules
 /src/vendor
 /src/WebDeploy/compiled.php
-/storage/*/*
+/storage
 
 *.sh
 *.swp

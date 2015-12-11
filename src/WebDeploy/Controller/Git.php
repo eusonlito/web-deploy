@@ -8,15 +8,9 @@ class Git extends Controller
 {
     private function check()
     {
-        if (Repository\Git::exists()) {
-            return true;
+        if (!Repository\Git::exists()) {
+            return self::error('git', __('GIT is not installed'));
         }
-
-        self::page('body', 'git.layout');
-
-        return self::template('content', 'molecules.error', array(
-            'message' => __('GIT is not installed')
-        ));
     }
 
     public function git()

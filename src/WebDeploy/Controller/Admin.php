@@ -14,11 +14,7 @@ class Admin extends Controller
             return true;
         }
 
-        self::page('body', 'admin.layout');
-
-        return self::template('content', 'molecules.error', array(
-            'message' => __('GIT is not installed')
-        ));
+        return self::error('admin', __('GIT is not installed'));
     }
 
     public function git()

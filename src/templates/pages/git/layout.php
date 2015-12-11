@@ -12,7 +12,6 @@
             <li <?= ($ROUTE === 'git-log') ? 'class="active"' : ''; ?>><a href="<?= route('/git/log'); ?>"><?= __('Log'); ?></a></li>
         </ul>
 
-        <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active">
                 <?php template()->show('content'); ?>

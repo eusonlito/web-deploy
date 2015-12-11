@@ -31,4 +31,13 @@ abstract class Controller
     {
         return template()->set($name, $file, $parameters);
     }
+
+    protected static function error($layout, $message)
+    {
+        self::page('body', $layout.'.layout');
+
+        return self::template('content', 'molecules.error', array(
+            'message' => $message
+        ));
+    }
 }

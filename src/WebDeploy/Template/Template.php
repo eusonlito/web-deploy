@@ -10,6 +10,7 @@ class Template
 
     private $templates = array();
     private $shared = array();
+    private $_ = array();
     private $path;
 
     public static function getInstance()
@@ -34,23 +35,27 @@ class Template
 
     public function show($name, $parameters = array())
     {
-        if (!is_file($file = $this->file($name))) {
-            throw new Exception\UnexpectedValueException(__('Template %s not exists', $file));
+        if (!is_file($this->_['file'] = $this->file($name))) {
+            throw new Exception\UnexpectedValueException(__('Template %s not exists', $this->_['file']));
         }
+
+        $this->_['name'] = $name;
 
         if ($this->shared) {
             extract($this->shared);
         }
 
-        if ($parameters = $this->getParameters($name)) {
-            extract($parameters);
+        if ($extract = $this->getParameters($name)) {
+            extract($extract);
         }
 
         if ($parameters) {
             extract($parameters);
         }
 
-        require $file;
+        require $this->_['file'];
+
+        $this->_ = array();
     }
 
     public function share($parameters = array())
