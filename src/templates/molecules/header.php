@@ -14,7 +14,6 @@
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li <?= (strpos($ROUTE, 'git-') === 0) ? 'class="active"' : ''; ?>><a href="<?= route('/git'); ?>"><?= __('GIT'); ?></a></li>
-                <li <?= (strpos($ROUTE, 'composer-') === 0) ? 'class="active"' : ''; ?>><a href="<?= route('/composer'); ?>"><?= __('Composer'); ?></a></li>
                 <li <?= (strpos($ROUTE, 'admin-') === 0) ? 'class="active"' : ''; ?>><a href="<?= route('/admin'); ?>"><?= __('Admin'); ?></a></li>
             </ul>
         </nav>

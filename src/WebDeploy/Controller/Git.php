@@ -3,13 +3,12 @@ namespace WebDeploy\Controller;
 
 use WebDeploy\Processor;
 use WebDeploy\Repository;
-use WebDeploy\Shell\Shell;
 
 class Git extends Controller
 {
     private function check()
     {
-        if ((new Shell)->exec('which git')->getLog()['success']) {
+        if (Repository\Git::exists()) {
             return true;
         }
 
@@ -51,7 +50,7 @@ class Git extends Controller
 
     public function update()
     {
-        meta()->meta('title', 'Web Deploy Update');
+        meta()->meta('title', 'GIT Update');
 
         if (is_object($error = $this->check())) {
             return $error;

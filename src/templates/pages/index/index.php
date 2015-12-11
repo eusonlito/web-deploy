@@ -6,10 +6,14 @@
 
 <div class="container bs-docs-container">
     <div class="bs-docs-section">
-        <h1 class="page-header">
-            <?= __('Who I am'); ?>
-        </h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?= __('Who I am'); ?></h3>
+            </div>
 
-        <?= shellResponse($whoami); ?>
+            <div class="panel-body">
+                <?= shellResponse($whoami); ?>
+            </div>
+        </div>
     </div>
 </div>
