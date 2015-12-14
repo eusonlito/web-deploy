@@ -3,7 +3,6 @@ namespace WebDeploy\Processor;
 
 use WebDeploy\Repository;
 use WebDeploy\Router\Route;
-use WebDeploy\Shell\Shell;
 
 class Admin extends Git
 {

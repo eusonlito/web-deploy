@@ -1,20 +1,21 @@
 <?php
 namespace WebDeploy\Controller;
 
+use Exception;
 use WebDeploy\Processor;
 use WebDeploy\Repository;
 use WebDeploy\Router\Route;
-use WebDeploy\Shell\Shell;
 
 class Admin extends Controller
 {
     private function check()
     {
-        if ((new Shell)->exec('which git')->getLog()['success']) {
-            return true;
+        try {
+            Repository\Git::check();
+            Repository\Composer::check();
+        } catch (Exception $e) {
+            return self::error('admin', $e->getMessage());
         }
-
-        return self::error('admin', __('GIT is not installed'));
     }
 
     public function git()

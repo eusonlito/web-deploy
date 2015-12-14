@@ -5,7 +5,7 @@
 
     <div class="panel-body">
         <form class="form-group">
-            <input type="number" name="last" value="<?= $last; ?>" placeholder="<?= __('Get log for last N commits'); ?>" class="form-control input-block" />
+            <input type="number" name="last" value="<?= $last; ?>" placeholder="<?= __('Get log for last N commits'); ?>" class="form-control" />
         </form>
 
         <?= shellResponse($log); ?>
