@@ -1,13 +1,18 @@
 <?php
 namespace WebDeploy\Repository;
 
+use Exception;
 use WebDeploy\Shell\Shell;
 
 class Git extends Repository
 {
-    public static function exists()
+    public static function check()
     {
-        return (new Shell)->exec('which git')->getLog()['success'];
+        Shell::check();
+
+        if (!(new Shell)->exec('which git')->getLog()['success']) {
+            throw new Exception\BadFunctionCallException(__('<strong>git</strong> command is not installed'));
+        }
     }
 
     public function currentBranch()

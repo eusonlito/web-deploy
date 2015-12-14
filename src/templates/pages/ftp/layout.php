@@ -8,6 +8,7 @@
     <div class="bs-docs-section">
         <ul class="nav nav-tabs" role="tablist">
             <li <?= ($ROUTE === 'ftp-index') ? 'class="active"' : ''; ?>><a href="<?= route('/ftp'); ?>"><?= __('Status'); ?></a></li>
+            <li <?= ($ROUTE === 'ftp-update') ? 'class="active"' : ''; ?>><a href="<?= route('/ftp/update'); ?>"><?= __('Update'); ?></a></li>
         </ul>
 
         <div class="tab-content">

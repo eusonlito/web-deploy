@@ -5,6 +5,10 @@ abstract class ErrorHandler
 {
     protected static function error($errno, $errstr, $errfile, $errline)
     {
+        if (error_reporting() === 0) {
+            return;
+        }
+
         die(static::printError($errno, $errstr, $errfile, $errline));
     }
 

@@ -1,6 +1,7 @@
 <?php
 namespace WebDeploy\Controller;
 
+use Exception;
 use WebDeploy\Processor;
 use WebDeploy\Repository;
 
@@ -8,8 +9,10 @@ class Git extends Controller
 {
     private function check()
     {
-        if (!Repository\Git::exists()) {
-            return self::error('git', __('GIT is not installed'));
+        try {
+            Repository\Git::check();
+        } catch (Exception $e) {
+            return self::error('git', $e->getMessage());
         }
     }
 

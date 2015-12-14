@@ -1,29 +1,34 @@
 <?php
 namespace WebDeploy\Controller;
 
+use Exception;
 use WebDeploy\Shell\Shell;
 
 class Index extends Controller
 {
     private function check()
     {
-        $whoami = (new Shell)->exec('whoami')->getLogs()[0];
-
-        if (empty($whoami['success'])) {
-            return self::error('index', __('Commands are not supported'));
+        try {
+            Shell::check();
+        } catch (Exception $e) {
+            return self::error('index', $e->getMessage());
         }
-
-        return $whoami;
     }
 
     public function index()
     {
-        if (is_object($whoami = $this->check())) {
-            return $whoami;
+        if (is_object($error = $this->check())) {
+            return $error;
         }
 
+        $responses = (new Shell)
+            ->exec('whoami')
+            ->exec('pwd')
+            ->getLogs();
+
         return self::content('index.index', array(
-            'whoami' => $whoami
+            'whoami' => array_shift($responses),
+            'path' => array_shift($responses)
         ));
     }
 }

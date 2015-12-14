@@ -1,13 +1,18 @@
 <?php
 namespace WebDeploy\Repository;
 
+use WebDeploy\Exception;
 use WebDeploy\Shell\Shell;
 
 class Composer extends Repository
 {
-    public static function exists()
+    public static function check()
     {
-        return (new Shell)->exec('which composer')->getLog()['success'];
+        Shell::check();
+
+        if (!(new Shell)->exec('which composer')->getLog()['success']) {
+            throw new Exception\BadFunctionCallException(__('<strong>composer</strong> command is not installed'));
+        }
     }
 
     public function __construct($path = null, $log = false)

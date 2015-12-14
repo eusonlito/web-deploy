@@ -1,6 +1,7 @@
 <?php
 namespace WebDeploy\Shell;
 
+use WebDeploy\Exception;
 use WebDeploy\Router\Route;
 
 class Shell
@@ -9,6 +10,17 @@ class Shell
     private $path;
     private $log = false;
     private $logs = array();
+
+    public static function check()
+    {
+        if (!function_exists('shell_exec')) {
+            throw new Exception\BadFunctionCallException(__('PHP function <strong>shell_exec</strong> not exists'));
+        }
+
+        if (in_array('exec', array_map('trim', explode(',', ini_get('disable_functions'))), true)) {
+            throw new Exception\BadFunctionCallException(__('PHP function <strong>shell_exec</strong> is marked as disabled'));
+        }
+    }
 
     public function __construct($path = null)
     {
@@ -23,7 +35,7 @@ class Shell
             mkdir($logs, 0755, true);
         }
 
-        $this->cd($path ?: config('git')['path'] ?: Route::getBasePath());
+        $this->cd($path ?: config('project')['path'] ?: Route::getBasePath());
     }
 
     public function cd($path)

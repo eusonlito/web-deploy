@@ -35,7 +35,7 @@ a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a,
     border: none;
 }
 
-.command > pre:first-child {
+.bg-dark {
     background-color: #666;
     color: #FFF;
 }
