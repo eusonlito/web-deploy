@@ -5,13 +5,17 @@ use WebDeploy\Filesystem;
 
 trait GitIgnoreTrait
 {
-    private function getExcludeIncludeFromGitignore($directory)
+    private function getExcludeIncludeFromGitignore($directory, $parser)
     {
+        if (empty($parser)) {
+            throw new Exception\UnexpectedValueException(__('parser is required'));
+        }
+
         $filesystem = new Filesystem\Directory($directory);
         $excludes = $includes = array();
 
         foreach ($filesystem->scanRecursiveFiltered('/\.gitignore$') as $file) {
-            list($to_exclude, $to_include) = $this->getExcludeIncludeFromGitignoreParser($file);
+            list($to_exclude, $to_include) = $this->$parser($file);
 
             $excludes = array_merge($excludes, $to_exclude);
             $includes = array_merge($includes, $to_include);
@@ -20,7 +24,7 @@ trait GitIgnoreTrait
         return array($excludes, $includes);
     }
 
-    private function getExcludeIncludeFromGitignoreParser($file)
+    private function getExcludeIncludeFromGitignoreParserToPHP($file)
     {
         $directory = rtrim(dirname($file), '/');
         $excludes = $includes = array();
@@ -55,6 +59,30 @@ trait GitIgnoreTrait
             }
 
             $file = $directory.'/'.ltrim($file, '/');
+
+            if (strstr($file, '!')) {
+                $includes[] = str_replace('!', '', $file);
+            } else {
+                $excludes[] = $file;
+            }
+        }
+
+        return array($excludes, $includes);
+    }
+
+    private function getExcludeIncludeFromGitignoreParserToBash($file)
+    {
+        $directory = rtrim(dirname($file), '/');
+        $excludes = $includes = array();
+
+        foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $file) {
+            $file = trim($file);
+
+            if (strpos($file, '#') === 0) {
+                continue;
+            }
+
+            $file = ltrim($file, '/');
 
             if (strstr($file, '!')) {
                 $includes[] = str_replace('!', '', $file);

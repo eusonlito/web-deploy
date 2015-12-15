@@ -6,7 +6,9 @@ use WebDeploy\Filesystem;
 
 class Ftp extends Repository
 {
-    use GitIgnoreTrait, FilesTrait;
+    use GitIgnoreTrait, FilesTrait {
+        getRecentFiles as getRecentFilesTrait;
+    }
 
     private $connection;
     private $config = array();
@@ -58,6 +60,11 @@ class Ftp extends Repository
         }
 
         return $this;
+    }
+
+    public function getRecentFiles($days)
+    {
+        return self::getRecentFilesTrait($days, 'getExcludeIncludeFromGitignoreParserToPHP');
     }
 
     public function upload($files)
