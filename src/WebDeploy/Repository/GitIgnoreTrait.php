@@ -22,7 +22,7 @@ trait GitIgnoreTrait
 
     private function getExcludeIncludeFromGitignoreParser($file)
     {
-        $directory = preg_replace('#/$#', '', dirname($file));
+        $directory = rtrim(dirname($file), '/');
         $excludes = $includes = array();
 
         foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $file) {
@@ -54,7 +54,7 @@ trait GitIgnoreTrait
                 }
             }
 
-            $file = $directory.'/'.preg_replace('#^/#', '', $file);
+            $file = $directory.'/'.ltrim($file, '/');
 
             if (strstr($file, '!')) {
                 $includes[] = str_replace('!', '', $file);
