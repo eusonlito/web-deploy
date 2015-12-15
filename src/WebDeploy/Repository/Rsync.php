@@ -61,8 +61,16 @@ class Rsync extends Repository
             .' '.$options
             .' -e \''.$this->ssh().'\'';
 
-        foreach ($this->config['exclude'] as $exclude) {
-            $cmd .= ' --exclude '.$exclude;
+        list($exclude, $include) = self::getExcludeIncludeFromGitignore($this->config['path'], 'getExcludeIncludeFromGitignoreParserToBash');
+
+        $exclude = array_merge($exclude, $this->config['exclude']);
+
+        foreach ($exclude as $row) {
+            $cmd .= ' --exclude "'.$row.'"';
+        }
+
+        foreach ($include as $row) {
+            $cmd .= ' --include "'.$row.'"';
         }
 
         return $cmd

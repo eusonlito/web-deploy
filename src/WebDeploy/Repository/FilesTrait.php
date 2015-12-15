@@ -1,15 +1,16 @@
 <?php
 namespace WebDeploy\Repository;
 
+use WebDeploy\Exception;
 use WebDeploy\Filesystem;
 
 trait FilesTrait
 {
-    public function getRecentFiles($days)
+    public function getRecentFiles($days, $gitIgnoreParser = null)
     {
         $base = $this->config['path'];
 
-        list($exclude, $include) = $this->getExcludeIncludeFromGitignore($base);
+        list($exclude, $include) = $this->getExcludeIncludeFromGitignore($base, $gitIgnoreParser);
 
         $files = (new Filesystem\Directory($base))
             ->recursive(true)
