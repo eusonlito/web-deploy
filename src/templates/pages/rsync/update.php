@@ -13,19 +13,7 @@
 
             <?php if (isset($processor['rsync-upload'])) { ?>
 
-            <?php if (isset($processor['rsync-upload']['error'])) { ?>
-
-            <pre class="bg-danger"><?= $processor['rsync-upload']['error']; ?></pre>
-
-            <?php } else { ?>
-
-            <?php foreach ($processor['rsync-upload']['success'] as $row) { ?>
-
-            <pre class="bg-<?= $row['status'] ? 'success' : 'danger'; ?>"><strong><?= $row['cmd']; ?>:</strong> <?= $row['arguments']; ?></pre>
-
-            <?php } ?>
-
-            <?php } ?>
+            <?= shellResponse($processor['rsync-upload']); ?>
 
             <?php } ?>
 

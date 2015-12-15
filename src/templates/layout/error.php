@@ -77,6 +77,10 @@
                 margin: 40px 0;
             }
 
+            .pull-right {
+                float: right;
+            }
+
             @media (max-width: 640px), (max-height: 640px) {
                 h1 {
                     margin: 0 0 15px;
@@ -96,6 +100,7 @@
             </div>
 
             <div class="nav-wrapper">
+                <a href="javascript: window.reload();" class="text-button blue-button"><?= __('Reload'); ?></a>
                 <a href="javascript: history.back();" class="text-button blue-button"><?= __('Back'); ?></a>
             </div>
 
