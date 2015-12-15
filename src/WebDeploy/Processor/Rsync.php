@@ -57,11 +57,9 @@ class Rsync extends Processor
     protected function rsyncUpload()
     {
         try {
-            $log = (new Repository\Rsync)->upload(input('files'))->getLog();
+            return (new Repository\Rsync)->upload(input('files'));
         } catch (Exception $e) {
             return array('error' => $e->getMessage());
         }
-
-        return array('success' => $log);
     }
 }
