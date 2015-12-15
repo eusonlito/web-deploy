@@ -8,13 +8,23 @@
     </div>
 </div>
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Who I am'); ?></h3>
+    </div>
+
+    <div class="panel-body">
+        <?= shellResponse($whoami); ?>
+    </div>
+</div>
+
 <form method="post">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title with-button">
                 <?= __('Connection'); ?>
 
-                <button type="submit" name="processor" value="ftp-test" class="btn btn-success pull-right xxs-block">
+                <button type="submit" name="processor" value="rsync-test" class="btn btn-success pull-right xxs-block">
                     <?= __('Test'); ?>
                 </button>
             </h3>
@@ -25,11 +35,10 @@
                 <li><strong><?= __('Host') ?>:</strong> <?= $config['host']; ?></li>
                 <li><strong><?= __('User') ?>:</strong> <?= $config['user']; ?></li>
                 <li><strong><?= __('Port') ?>:</strong> <?= $config['port']; ?></li>
-                <li><strong><?= __('Timeout') ?>:</strong> <?= $config['timeout']; ?></li>
                 <li><strong><?= __('Remote Path') ?>:</strong> <?= $config['remote_path']; ?></li>
             </ul>
 
-            <?= isset($processor['ftp-test']) ? shellResponse($processor['ftp-test']) : ''; ?>
+            <?= isset($processor['rsync-test']) ? shellResponse($processor['rsync-test']) : ''; ?>
         </div>
     </div>
 </form>

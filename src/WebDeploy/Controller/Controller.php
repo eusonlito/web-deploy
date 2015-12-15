@@ -1,8 +1,9 @@
 <?php
 namespace WebDeploy\Controller;
 
-use WebDeploy\Template\Template;
+use WebDeploy\Exception;
 use WebDeploy\Router\Router;
+use WebDeploy\Template\Template;
 
 abstract class Controller
 {
@@ -11,8 +12,16 @@ abstract class Controller
         meta()->title('Web Deploy');
 
         template()->share(array(
-            'ROUTE' => $router->getRoute()
+            'ROUTE' => $router->getRoute(),
+            'MODULES' => config('project')['modules']
         ));
+    }
+
+    protected static function checkModule($module)
+    {
+        if (!in_array($module, config('project')['modules'], true)) {
+            throw new Exception\UnexpectedValueException(__('This module is not enabled'));
+        }
     }
 
     protected static function page($name, $file, array $parameters = array())

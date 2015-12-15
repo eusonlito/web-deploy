@@ -7,10 +7,16 @@ use WebDeploy\Repository;
 
 class Ftp extends Controller
 {
-    private function check()
+    private function check($module = true, $repository = true)
     {
         try {
-            Repository\Ftp::check();
+            if ($module) {
+                self::checkModule('ftp');
+            }
+
+            if ($repository) {
+                Repository\Ftp::check();
+            }
         } catch (Exception $e) {
             return self::error('ftp', $e->getMessage());
         }
@@ -18,7 +24,9 @@ class Ftp extends Controller
 
     public function index()
     {
-        if (is_object($response = $this->check())) {
+        meta()->meta('title', 'FTP Status');
+
+        if (is_object($response = $this->check(true, false))) {
             return $response;
         }
 
@@ -31,6 +39,8 @@ class Ftp extends Controller
 
     public function update()
     {
+        meta()->meta('title', 'FTP Update');
+
         if (is_object($response = $this->check())) {
             return $response;
         }

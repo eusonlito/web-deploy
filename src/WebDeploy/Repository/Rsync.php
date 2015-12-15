@@ -3,8 +3,9 @@ namespace WebDeploy\Repository;
 
 use WebDeploy\Exception;
 use WebDeploy\Filesystem;
+use WebDeploy\Shell\Shell;
 
-class Ftp extends Repository
+class Rsync extends Repository
 {
     use GitIgnoreTrait, FilesTrait;
 
@@ -14,50 +15,48 @@ class Ftp extends Repository
 
     public static function check()
     {
-        if (!function_exists('ftp_connect')) {
-            throw new Exception\BadFunctionCallException(__('PHP functions related with <strong>ftp</strong> are not installed'));
+        Shell::check();
+
+        if (!(new Shell)->exec('which rsync')->getLog()['success']) {
+            throw new Exception\BadFunctionCallException(__('<strong>rsync</strong> command is not installed'));
         }
 
-        $config = config('ftp');
+        $config = config('rsync');
 
         if (empty($config['host']) || empty($config['user'])) {
-            throw new Exception\UnexpectedValueException(__('You need configure the config/ftp.php file'));
+            throw new Exception\UnexpectedValueException(__('You need configure the config/rsync.php file'));
         }
 
-        (new self)->connect()->close();
+        (new self)->connect();
 
         return true;
     }
 
     public function __construct()
     {
-        $this->config = array_merge(config('project'), config('ftp'));
+        $this->config = array_merge(config('project'), config('rsync'));
+    }
+
+    private function ssh($cmd)
+    {
+        return 'ssh'
+            .' -o BatchMode=yes'
+            .' -o StrictHostKeyChecking=no'
+            .' -o UserKnownHostsFile=/dev/null'
+            .' -o ConnectTimeout='.$this->config['timeout']
+            .' '.$this->config['user'].'@'.$this->config['host']
+            .' '.$cmd;
     }
 
     public function connect()
     {
-        $this->connection = ftp_connect($this->config['host'], $this->config['port'], $this->config['timeout']);
+        $log = (new Shell)->exec($this->ssh('echo OK 2>&1'))->getLog();
 
-        if (!$this->connection) {
-            throw new Exception\UnexpectedValueException(__('Could not connect to <strong>%s</strong> using port <strong>%s</strong>', $this->config['host'], $this->config['port']));
+        if (empty($log['success'])) {
+            throw new Exception\UnexpectedValueException($log['error']);
         }
 
-        if (!@ftp_login($this->connection, $this->config['user'], $this->config['password'])) {
-            throw new Exception\UnexpectedValueException(__('Bad authentication data to connect to <strong>%s</strong> with user <strong>%s</strong>', $this->config['host'], $this->config['user']));
-        }
-
-        ftp_pasv($this->connection, true);
-
-        return $this;
-    }
-
-    public function close()
-    {
-        if ($this->connection) {
-            ftp_close($this->connection);
-        }
-
-        return $this;
+        return $log;
     }
 
     public function upload($files)
@@ -78,6 +77,23 @@ class Ftp extends Repository
         }
 
         return $this;
+    }
+
+    private function getValidFiles($files)
+    {
+        if (empty($files) || !is_array($files)) {
+            return array();
+        }
+
+        $valid = array();
+
+        foreach ($files as $file) {
+            if (is_file($this->config['path'].'/'.($file = base64_decode($file)))) {
+                $valid[] = $file;
+            }
+        }
+
+        return $valid;
     }
 
     private function put($local, $remote)

@@ -1,7 +1,7 @@
 <?php
 namespace WebDeploy\Repository;
 
-use Exception;
+use WebDeploy\Exception;
 use WebDeploy\Shell\Shell;
 
 class Git extends Repository
