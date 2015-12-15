@@ -100,7 +100,7 @@
             </div>
 
             <div class="nav-wrapper">
-                <a href="javascript: window.reload();" class="text-button blue-button"><?= __('Reload'); ?></a>
+                <a href="javascript: window.reload();" class="text-button blue-button pull-right"><?= __('Reload'); ?></a>
                 <a href="javascript: history.back();" class="text-button blue-button"><?= __('Back'); ?></a>
             </div>
 

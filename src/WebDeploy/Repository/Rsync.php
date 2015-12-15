@@ -66,9 +66,9 @@ class Rsync extends Repository
         }
 
         return $cmd
-            .' '.$this->config['path']
+            .' '.rtrim($this->config['path'], '/').'/'
             .' '.$this->config['user'].'@'.$this->config['host']
-            .':'.$this->config['remote_path'];
+            .':'.rtrim($this->config['remote_path'], '/').'/';
     }
 
     public function connect()
@@ -89,7 +89,7 @@ class Rsync extends Repository
         if (empty($files)) {
             return array();
         }
-
+dd($files);
         $base = preg_replace('#^/#', '', $this->config['remote_path']);
         $valid = array();
 
