@@ -58,8 +58,8 @@ class Rsync extends Controller
             $files = array();
         }
 
-        return self::content('ftp.update', array(
-            'config' => config('ftp'),
+        return self::content('rsync.update', array(
+            'config' => config('rsync'),
             'files' => $files,
             'processor' => (new Processor\Rsync)->update()
         ));
