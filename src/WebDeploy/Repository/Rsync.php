@@ -121,10 +121,10 @@ class Rsync extends Repository
 
         $contents = '';
 
-        $base = preg_replace('#^/#', '', $this->config['remote_path']);
+        $base = trim($this->config['remote_path'], '/');
 
         foreach ($files as $file) {
-            $contents .= $base.'/'.$file;
+            $contents .= $base.'/'.$file."\n";
         }
 dd($contents);
         $log = (new Filesystem\File)->temporal()->write($contents)->getFileName();
