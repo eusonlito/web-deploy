@@ -37,20 +37,42 @@ class Rsync extends Repository
         $this->config = array_merge(config('project'), config('rsync'));
     }
 
-    private function ssh($cmd)
+    private function ssh()
     {
         return 'ssh'
             .' -o BatchMode=yes'
             .' -o StrictHostKeyChecking=no'
             .' -o UserKnownHostsFile=/dev/null'
             .' -o ConnectTimeout='.$this->config['timeout']
+            .' -p '.$this->config['port'];
+    }
+
+    private function sshCommand($cmd)
+    {
+        return $this->ssh()
             .' '.$this->config['user'].'@'.$this->config['host']
             .' '.$cmd;
     }
 
+    private function rsync($options = '')
+    {
+        $cmd = 'rsync -av --no-perms --no-owner --no-group --no-times'
+            .' '.$options
+            .' -e \''.$this->ssh().'\'';
+
+        foreach ($this->config['exclude'] as $exclude) {
+            $cmd .= ' --exclude '.$exclude;
+        }
+
+        return $cmd
+            .' '.$this->config['path']
+            .' '.$this->config['user'].'@'.$this->config['host']
+            .':'.$this->config['remote_path'];
+    }
+
     public function connect()
     {
-        $log = (new Shell)->exec($this->ssh('echo OK 2>&1'))->getLog();
+        $log = (new Shell)->exec($this->sshCommand('echo OK 2>&1'))->getLog();
 
         if (empty($log['success'])) {
             throw new Exception\UnexpectedValueException($log['error']);
@@ -59,102 +81,8 @@ class Rsync extends Repository
         return $log;
     }
 
-    public function upload($files)
+    public function getUpdatedFiles()
     {
-        $files = $this->getValidFiles($files);
-
-        if (empty($files)) {
-            throw new Exception\UnexpectedValueException(__('File list is empty'));
-        }
-
-        $this->connect();
-
-        $local = $this->config['path'].'/';
-        $remote = $this->config['remote_path'];
-
-        foreach ($files as $file) {
-            $this->put($local.$file, $remote.$file);
-        }
-
-        return $this;
-    }
-
-    private function getValidFiles($files)
-    {
-        if (empty($files) || !is_array($files)) {
-            return array();
-        }
-
-        $valid = array();
-
-        foreach ($files as $file) {
-            if (is_file($this->config['path'].'/'.($file = base64_decode($file)))) {
-                $valid[] = $file;
-            }
-        }
-
-        return $valid;
-    }
-
-    private function put($local, $remote)
-    {
-        if ($this->chdir(dirname($remote)) === false) {
-            return false;
-        }
-
-        $status = @ftp_put($this->connection, $remote, $local, FTP_BINARY);
-
-        return $this->log('PUT', $local.' '.$remote, $status);
-    }
-
-    private function chdir($directory)
-    {
-        if (@ftp_chdir($this->connection, $directory)) {
-            return $this->log('CHDIR', $directory, true);
-        }
-
-        $directory = array_filter(explode('/', $directory));
-        $path = '/'.array_shift($directory);
-
-        if (!@ftp_chdir($this->connection, $path)) {
-            return $this->log('CHDIR', $path, false);
-        }
-
-        $status = true;
-
-        foreach ($directory as $path) {
-            if (@ftp_chdir($this->connection, $path)){
-                $this->log('CHDIR', $path, true);
-                continue;
-            }
-
-            $status = @ftp_mkdir($this->connection, $path) ? true : false;
-            $this->log('MKDIR', $path, $status);
-
-            if ($status === false) {
-                return false;
-            }
-
-            $status = @ftp_chdir($this->connection, $path) ? true : false;
-            $this->log('CHDIR', $path, $status);
-        }
-
-        return $status;
-    }
-
-    private function log($cmd, $arguments, $status)
-    {
-        $this->log[] = array(
-            'cmd' => $cmd,
-            'arguments' => $arguments,
-            'status' => $status
-        );
-
-        return $status;
-    }
-
-    public function getLog()
-    {
-        return $this->log;
+        dd((new Shell)->exec($this->rsync('--dry-run'))->getLog());
     }
 }
