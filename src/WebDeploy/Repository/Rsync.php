@@ -57,6 +57,7 @@ class Rsync extends Repository
     private function rsync($options = '')
     {
         $cmd = 'rsync -av --no-perms --no-owner --no-group --no-times'
+            .' --force --update --partial --ignore-errors'
             .' '.$options
             .' -e \''.$this->ssh().'\'';
 
@@ -83,6 +84,32 @@ class Rsync extends Repository
 
     public function getUpdatedFiles()
     {
-        dd((new Shell)->exec($this->rsync('--dry-run'))->getLog());
+        $files = (new Shell)->exec($this->rsync('--dry-run'))->getLog()['success'];
+
+        if (empty($files)) {
+            return array();
+        }
+
+        $valid = array();
+
+        foreach (array_filter(explode("\n", $files)) as $name) {
+            if (strstr($name, ' ')) {
+                continue;
+            }
+
+            $file = $this->config['path'].'/'.$name;
+
+            if (!is_file($file)) {
+                continue;
+            }
+
+            $valid[] = array(
+                'code' => base64_encode($name),
+                'name' => $name,
+                'date' => filemtime($file)
+            );
+        }
+
+        return $valid;
     }
 }
