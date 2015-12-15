@@ -15,7 +15,7 @@ trait GitIgnoreTrait
         $excludes = $includes = array();
 
         foreach ($filesystem->scanRecursiveFiltered('/\.gitignore$') as $file) {
-            list($to_exclude, $to_include) = $this->$parser($file);
+            list($to_exclude, $to_include) = $this->$parser($directory, $file);
 
             $excludes = array_merge($excludes, $to_exclude);
             $includes = array_merge($includes, $to_include);
@@ -24,7 +24,7 @@ trait GitIgnoreTrait
         return array($excludes, $includes);
     }
 
-    private function getExcludeIncludeFromGitignoreParserToPHP($file)
+    private function getExcludeIncludeFromGitignoreParserToPHP($base, $file)
     {
         $directory = rtrim(dirname($file), '/');
         $excludes = $includes = array();
@@ -70,9 +70,11 @@ trait GitIgnoreTrait
         return array($excludes, $includes);
     }
 
-    private function getExcludeIncludeFromGitignoreParserToBash($file)
+    private function getExcludeIncludeFromGitignoreParserToBash($base, $file)
     {
         $directory = rtrim(dirname($file), '/');
+        $base = str_replace($base, $directory, $directory);
+
         $excludes = $includes = array();
 
         foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $file) {
@@ -82,7 +84,7 @@ trait GitIgnoreTrait
                 continue;
             }
 
-            $file = ltrim($file, '/');
+            $file = $base.'/'.ltrim($file, '/');
 
             if (strstr($file, '!')) {
                 $includes[] = str_replace('!', '', $file);
