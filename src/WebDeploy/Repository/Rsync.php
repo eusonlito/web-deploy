@@ -115,9 +115,7 @@ class Rsync extends Repository
 
     public function upload($files)
     {
-        $this->getValidFiles($files);
-
-        if (empty($files)) {
+        if (empty($files = $this->getValidFiles($files))) {
             return array();
         }
 
