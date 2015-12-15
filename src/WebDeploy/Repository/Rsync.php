@@ -90,6 +90,7 @@ class Rsync extends Repository
             return array();
         }
 
+        $base = preg_replace('#^/#', '', $this->config['remote_path']);
         $valid = array();
 
         foreach (array_filter(explode("\n", $files)) as $name) {
@@ -97,7 +98,7 @@ class Rsync extends Repository
                 continue;
             }
 
-            $file = $this->config['path'].'/'.$name;
+            $file = $this->config['path'].'/'.str_replace($base, '', $name);
 
             if (!is_file($file)) {
                 continue;
