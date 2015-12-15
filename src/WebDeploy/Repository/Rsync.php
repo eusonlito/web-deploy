@@ -98,7 +98,8 @@ class Rsync extends Repository
                 continue;
             }
 
-            $file = $this->config['path'].'/'.str_replace($base, '', $name);
+            $name = str_replace($base, '', $name);
+            $file = $this->config['path'].'/'.$name;
 
             if (!is_file($file)) {
                 continue;
@@ -112,5 +113,12 @@ class Rsync extends Repository
         }
 
         return $valid;
+    }
+
+    public function upload($files)
+    {
+        $files = $this->getValidFiles($files);
+
+        dd($files);
     }
 }
