@@ -7,10 +7,16 @@ use WebDeploy\Repository;
 
 class Git extends Controller
 {
-    private function check()
+    private function check($module = true, $repository = true)
     {
         try {
-            Repository\Git::check();
+            if ($module) {
+                self::checkModule('git');
+            }
+
+            if ($repository) {
+                Repository\Git::check();
+            }
         } catch (Exception $e) {
             return self::error('git', $e->getMessage());
         }
