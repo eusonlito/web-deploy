@@ -73,7 +73,7 @@ trait GitIgnoreTrait
     private function getExcludeIncludeFromGitignoreParserToBash($base, $file)
     {
         $directory = rtrim(dirname($file), '/');
-        $base = str_replace($base, $directory, $directory);
+        $base = str_replace($base.'/', '', $directory);
 
         $excludes = $includes = array();
 
