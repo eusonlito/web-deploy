@@ -126,7 +126,7 @@ class Rsync extends Repository
         foreach ($files as $file) {
             $contents .= $base.'/'.$file."\n";
         }
-dd($contents);
+
         $log = (new Filesystem\File)->temporal()->write($contents)->getFileName();
 
         return (new Shell)->exec($this->rsync('--files-from='.$log))->getLog();
