@@ -32,7 +32,7 @@ class File
         return $this;
     }
 
-    public function write($content, $flag = null)
+    public function write($contents, $flag = null)
     {
         file_put_contents($this->file, $contents, $flag);
 
