@@ -121,6 +121,6 @@ class Rsync extends Repository
 
         $log = (new Filesystem\File)->temporal()->write(implode("\n", $files))->getFileName();
 
-        return (new Shell)->exec($this->rsync('--files-from='.$log));
+        return (new Shell)->exec($this->rsync('--files-from='.$log))->getLog();
     }
 }
