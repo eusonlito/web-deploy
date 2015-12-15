@@ -89,8 +89,7 @@ class Rsync extends Repository
         if (empty($files)) {
             return array();
         }
-dd($files);
-        $base = preg_replace('#^/#', '', $this->config['remote_path']);
+
         $valid = array();
 
         foreach (array_filter(explode("\n", $files)) as $name) {
@@ -98,7 +97,6 @@ dd($files);
                 continue;
             }
 
-            $name = str_replace($base, '', $name);
             $file = $this->config['path'].'/'.$name;
 
             if (!is_file($file)) {
@@ -117,17 +115,13 @@ dd($files);
 
     public function upload($files)
     {
-        $files = $this->getValidFiles($files);
+        $this->getValidFiles($files);
 
-        $contents = '';
-
-        $base = trim($this->config['remote_path'], '/');
-
-        foreach ($files as $file) {
-            $contents .= $base.'/'.$file."\n";
+        if (empty($files)) {
+            return array();
         }
 
-        $log = (new Filesystem\File)->temporal()->write($contents)->getFileName();
+        $log = (new Filesystem\File)->temporal()->write(implode("\n", $files))->getFileName();
 
         return (new Shell)->exec($this->rsync('--files-from='.$log));
     }
