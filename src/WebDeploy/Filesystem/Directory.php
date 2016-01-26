@@ -143,7 +143,7 @@ class Directory
 
     private function passFilters($file)
     {
-        return ($this->isIncluded($file) || !$this->isExcluded($file))
+        return $this->isIncluded($file)
             && $this->isOnlyFile($file)
             && $this->isOnlyDirectory($file)
             && $this->isOlder($file)
@@ -160,7 +160,7 @@ class Directory
             return preg_match('#'.$this->filters['include_prepared'].'#', $file);
         }
 
-        return true;
+        return !$this->isExcluded($file);
     }
 
     private function isExcluded($file)
@@ -172,6 +172,8 @@ class Directory
         if ($this->filters['exclude_prepared']) {
             return preg_match('#'.$this->filters['exclude_prepared'].'#', $file);
         }
+
+        return false;
     }
 
     private function isOnlyFile($file)
