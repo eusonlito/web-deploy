@@ -33,7 +33,7 @@ class Rsync extends Repository
 
     public function __construct()
     {
-        $this->loadConfig('ftp');
+        $this->loadConfig('rsync');
     }
 
     private function ssh()
