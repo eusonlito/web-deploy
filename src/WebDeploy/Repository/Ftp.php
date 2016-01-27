@@ -33,7 +33,7 @@ class Ftp extends Repository
 
     public function __construct()
     {
-        $this->config = array_merge(config('project'), config('ftp'));
+        $this->loadConfig('ftp');
     }
 
     public function connect()
@@ -77,11 +77,8 @@ class Ftp extends Repository
 
         $this->connect();
 
-        $local = $this->config['path'].'/';
-        $remote = $this->config['remote_path'];
-
         foreach ($files as $file) {
-            $this->put($local.$file, $remote.$file);
+            $this->put($this->config['path'].$file, $this->config['remote_path'].$file);
         }
 
         return $this;

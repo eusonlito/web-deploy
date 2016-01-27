@@ -34,7 +34,7 @@ class Rsync extends Repository
 
     public function __construct()
     {
-        $this->config = array_merge(config('project'), config('rsync'));
+        $this->loadConfig('ftp');
     }
 
     private function ssh()
@@ -74,9 +74,9 @@ class Rsync extends Repository
         }
 
         return $cmd
-            .' '.rtrim($this->config['path'], '/').'/'
+            .' '.$this->config['path']
             .' '.$this->config['user'].'@'.$this->config['host']
-            .':'.rtrim($this->config['remote_path'], '/').'/';
+            .':'.$this->config['remote_path'];
     }
 
     public function connect()

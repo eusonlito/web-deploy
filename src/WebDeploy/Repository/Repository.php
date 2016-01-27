@@ -37,4 +37,19 @@ abstract class Repository
 
         return $this;
     }
+
+    protected function loadConfig($file)
+    {
+        $this->config = array_merge(config('project'), config($file));
+
+        if (isset($this->config['path'])) {
+            $this->config['path'] = rtrim($this->config['path'], '/').'/';
+        }
+
+        if (isset($this->config['remote_path'])) {
+            $this->config['remote_path'] = rtrim($this->config['remote_path'], '/').'/';
+        }
+
+        return $this;
+    }
 }
