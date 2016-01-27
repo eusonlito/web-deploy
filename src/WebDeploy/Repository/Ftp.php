@@ -110,7 +110,7 @@ class Ftp extends Repository
         $status = true;
 
         foreach ($directory as $path) {
-            if (@ftp_chdir($this->connection, $path)){
+            if (@ftp_chdir($this->connection, $path)) {
                 $this->log('CHDIR', $path, true);
                 continue;
             }
