@@ -21,17 +21,15 @@ trait FilesTrait
             ->filterNewer(strtotime('-'.$days.' days'))
             ->get();
 
-        foreach ($files as &$file) {
-            $name = str_replace($base.'/', '', $file);
+        return array_map(function($file) use($base) {
+            $name = str_replace($base, '', $file);
 
-            $file = array(
+            return array(
                 'code' => base64_encode($name),
                 'name' => $name,
                 'date' => filemtime($file)
             );
-        }
-
-        return $files;
+        }, $files);
     }
 
     private function getValidFiles($files)
@@ -43,7 +41,7 @@ trait FilesTrait
         $valid = array();
 
         foreach ($files as $file) {
-            if (is_file($this->config['path'].'/'.($file = base64_decode($file)))) {
+            if (is_file($this->config['path'].($file = base64_decode($file)))) {
                 $valid[] = $file;
             }
         }

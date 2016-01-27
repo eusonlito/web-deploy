@@ -104,7 +104,7 @@ class Rsync extends Repository
                 continue;
             }
 
-            $file = $this->config['path'].'/'.$name;
+            $file = $this->config['path'].$name;
 
             if (!is_file($file)) {
                 continue;
