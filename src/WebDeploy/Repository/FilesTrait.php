@@ -21,7 +21,7 @@ trait FilesTrait
             ->filterNewer(strtotime('-'.$days.' days'))
             ->get();
 
-        return array_map(function($file) use($base) {
+        return array_map(function ($file) use ($base) {
             $name = str_replace($base, '', $file);
 
             return array(
