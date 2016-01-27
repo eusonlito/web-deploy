@@ -7,6 +7,7 @@ abstract class Repository
 {
     protected $path;
     protected $shell;
+    protected $config = array();
 
     public function __construct($path = null, $log = false)
     {

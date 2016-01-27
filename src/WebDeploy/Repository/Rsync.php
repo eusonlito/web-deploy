@@ -10,7 +10,6 @@ class Rsync extends Repository
     use GitIgnoreTrait, FilesTrait;
 
     private $connection;
-    private $config = array();
     private $log = array();
 
     public static function check()

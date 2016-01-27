@@ -11,7 +11,6 @@ class Ftp extends Repository
     }
 
     private $connection;
-    private $config = array();
     private $log = array();
 
     public static function check()
