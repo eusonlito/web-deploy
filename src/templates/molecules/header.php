@@ -13,23 +13,17 @@
 
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <?php if (in_array('git', $MODULES, true)) { ?>
-                <li <?= (strpos($ROUTE, 'git-') === 0) ? 'class="active"' : ''; ?>>
-                    <a href="<?= route('/git'); ?>"><?= __('GIT'); ?></a>
-                </li>
-                <?php } if (in_array('ftp', $MODULES, true)) { ?>
-                <li <?= (strpos($ROUTE, 'ftp-') === 0) ? 'class="active"' : ''; ?>>
-                    <a href="<?= route('/ftp'); ?>"><?= __('FTP'); ?></a>
-                </li>
-                <?php } if (in_array('rsync', $MODULES, true)) { ?>
-                <li <?= (strpos($ROUTE, 'rsync-') === 0) ? 'class="active"' : ''; ?>>
-                    <a href="<?= route('/rsync'); ?>"><?= __('RSYNC'); ?></a>
-                </li>
-                <?php } if (in_array('admin', $MODULES, true)) { ?>
-                <li <?= (strpos($ROUTE, 'admin-') === 0) ? 'class="active"' : ''; ?>>
-                    <a href="<?= route('/admin'); ?>"><?= __('Admin'); ?></a>
-                </li>
-                <?php } ?>
+                <?php
+                foreach (['git', 'ftp', 'rsync', 'mysql', 'admin'] as $module) {
+                    if (!in_array($module, $MODULES, true)) {
+                        continue;
+                    }
+
+                    echo '<li '.((strpos($ROUTE, $module.'-') === 0) ? 'class="active"' : '').'>'
+                        .'<a href="'.route('/'.$module).'">'.$module.'</a>'
+                        .'</li>';
+                }
+                ?>
             </ul>
         </nav>
     </div>

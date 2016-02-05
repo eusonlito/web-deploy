@@ -17,6 +17,23 @@ abstract class Controller
         ));
     }
 
+    protected function check($module = true, $repository = true)
+    {
+        $class = array_reverse(explode('\\', get_called_class()))[0];
+
+        try {
+            if ($module) {
+                static::checkModule(strtolower($class));
+            }
+
+            if ($repository) {
+                static::checkRepository(($repository === true) ? $class : $repository);
+            }
+        } catch (Exception $e) {
+            return static::error($module, $e->getMessage());
+        }
+    }
+
     protected static function checkModule($module)
     {
         if (!in_array($module, config('project')['modules'], true)) {
@@ -24,16 +41,27 @@ abstract class Controller
         }
     }
 
+    protected static function checkRepository($repositories)
+    {
+        $namespace = str_replace('Controller', 'Repository', __NAMESPACE__);
+        $repositories = is_array($repositories) ? $repositories : [$repositories];
+
+        foreach ($repositories as $repository) {
+            $repository = $namespace.'\\'.ucfirst($repository);
+            $repository::check();
+        }
+    }
+
     protected static function page($name, $file, array $parameters = array())
     {
-        return self::template($name, 'pages.'.$file, $parameters);
+        return static::template($name, 'pages.'.$file, $parameters);
     }
 
     protected static function content($file, array $parameters = array())
     {
-        self::page('body', explode('.', $file)[0].'.layout');
+        static::page('body', explode('.', $file)[0].'.layout');
 
-        return self::page('content', $file, $parameters);
+        return static::page('content', $file, $parameters);
     }
 
     protected static function template($name, $file, array $parameters = array())
@@ -43,9 +71,9 @@ abstract class Controller
 
     protected static function error($layout, $message)
     {
-        self::page('body', $layout.'.layout');
+        static::page('body', $layout.'.layout');
 
-        return self::template('content', 'molecules.error', array(
+        return static::template('content', 'molecules.error', array(
             'message' => $message
         ));
     }

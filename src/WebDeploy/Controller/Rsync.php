@@ -8,21 +8,6 @@ use WebDeploy\Shell\Shell;
 
 class Rsync extends Controller
 {
-    private function check($module = true, $repository = true)
-    {
-        try {
-            if ($module) {
-                self::checkModule('rsync');
-            }
-
-            if ($repository) {
-                Repository\Rsync::check();
-            }
-        } catch (Exception $e) {
-            return self::error('rsync', $e->getMessage());
-        }
-    }
-
     public function rsync()
     {
         return new Repository\Rsync;

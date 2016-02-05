@@ -6,19 +6,12 @@ use WebDeploy\Shell\Shell;
 
 class Index extends Controller
 {
-    private function check()
+    public function index()
     {
         try {
             Shell::check();
         } catch (Exception $e) {
             return self::error('index', $e->getMessage());
-        }
-    }
-
-    public function index()
-    {
-        if (is_object($error = $this->check())) {
-            return $error;
         }
 
         $responses = (new Shell)

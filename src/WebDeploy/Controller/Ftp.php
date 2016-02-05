@@ -7,21 +7,6 @@ use WebDeploy\Repository;
 
 class Ftp extends Controller
 {
-    private function check($module = true, $repository = true)
-    {
-        try {
-            if ($module) {
-                self::checkModule('ftp');
-            }
-
-            if ($repository) {
-                Repository\Ftp::check();
-            }
-        } catch (Exception $e) {
-            return self::error('ftp', $e->getMessage());
-        }
-    }
-
     public function index()
     {
         meta()->meta('title', 'FTP Status');

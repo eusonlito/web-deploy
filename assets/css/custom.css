@@ -2,14 +2,17 @@
     border-radius: 0 !important;
 }
 
-a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a,
-.bs-docs-nav .navbar-nav > .active > a {
+a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a, .bs-docs-nav .navbar-nav > .active > a {
     color: #058ea1;
 }
 
 #bs-navbar li.active a, .navbar-brand.active {
     background: #058ea1;
     color: #FFF;
+}
+
+.navbar-nav a {
+    text-transform: uppercase;
 }
 
 .bs-docs-header {
