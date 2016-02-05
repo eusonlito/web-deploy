@@ -8,20 +8,9 @@ use WebDeploy\Router\Route;
 
 class Admin extends Controller
 {
-    private function check($module = true, $repository = true)
+    protected function check($module = true, $repository = true)
     {
-        try {
-            if ($module) {
-                self::checkModule('admin');
-            }
-
-            if ($repository) {
-                Repository\Git::check();
-                Repository\Composer::check();
-            }
-        } catch (Exception $e) {
-            return self::error('admin', $e->getMessage());
-        }
+        return parent::check(true, ['git', 'composer']);
     }
 
     public function git()
