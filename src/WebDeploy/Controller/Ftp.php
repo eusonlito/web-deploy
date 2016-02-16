@@ -1,7 +1,6 @@
 <?php
 namespace WebDeploy\Controller;
 
-use Exception;
 use WebDeploy\Processor;
 use WebDeploy\Repository;
 
@@ -26,10 +25,10 @@ class Ftp extends Controller
     {
         meta()->meta('title', 'FTP Update');
 
-        if (is_object($response = $this->check())) {
+        if (is_object($response = $this->check(true, true))) {
             return $response;
         }
-
+exit;
         $config = config('ftp');
         $days = (int)input('days') ?: $config['days_history'];
 

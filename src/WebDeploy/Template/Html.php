@@ -2,7 +2,6 @@
 namespace WebDeploy\Template;
 
 use WebDeploy\Router;
-use WebDeploy\Exception;
 
 class Html
 {

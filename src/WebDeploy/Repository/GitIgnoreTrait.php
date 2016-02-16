@@ -1,6 +1,7 @@
 <?php
 namespace WebDeploy\Repository;
 
+use WebDeploy\Exception;
 use WebDeploy\Filesystem;
 
 trait GitIgnoreTrait

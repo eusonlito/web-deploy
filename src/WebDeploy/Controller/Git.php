@@ -1,7 +1,6 @@
 <?php
 namespace WebDeploy\Controller;
 
-use Exception;
 use WebDeploy\Processor;
 use WebDeploy\Repository;
 
