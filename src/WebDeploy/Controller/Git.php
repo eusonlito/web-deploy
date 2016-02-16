@@ -30,8 +30,26 @@ class Git extends Controller
         return self::content('git.index', array(
             'branch' => array_shift($logs),
             'commit' => array_shift($logs),
-            'status' => array_shift($logs),
+            'status' => $this->git()->setDiffLinks(array_shift($logs)),
             'path' => array_shift($logs)
+        ));
+    }
+
+    public function diff()
+    {
+        meta()->meta('title', 'GIT Diff');
+
+        if (is_object($error = $this->check())) {
+            return $error;
+        }
+
+        if (!($file = input('f'))) {
+            redirect(route('/git'));
+        }
+
+        return self::content('git.diff', array(
+            'file' => $file,
+            'log' => $this->git()->diff($file)->getShellAndLog()
         ));
     }
 

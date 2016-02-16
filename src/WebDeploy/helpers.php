@@ -64,3 +64,8 @@ function config($name = null, $value = null)
 {
     return (func_num_args() === 2) ? Config::set($name, $value) : Config::get($name);
 }
+
+function redirect($url)
+{
+    die(header('Location: '.$url));
+}

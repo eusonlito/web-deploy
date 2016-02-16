@@ -70,6 +70,11 @@ class Git extends Repository
         return $this->exec('git checkout '.$hash);
     }
 
+    public function diff($file)
+    {
+        return $this->exec('git diff '.$file);
+    }
+
     public function logSimple()
     {
         return $this->exec('git log --date=iso --pretty=format:"%h %cd [%an] %s"');
@@ -110,5 +115,14 @@ class Git extends Repository
                 'name' => trim(preg_replace('/^\* /', '', $line))
             );
         }, explode("\n", (new self($this->path))->getBranches()['success']));
+    }
+
+    public function setDiffLinks(array $log)
+    {
+        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w/\.]+)#', function($matches) {
+            return $matches[1].'<a href="'.route('/git/diff').'?f='.urlencode($matches[2]).'">'.$matches[2].'</a>';
+        }, $log['success']);
+
+        return $log;
     }
 }
