@@ -156,11 +156,13 @@ class Directory
             return false;
         }
 
-        if ($this->filters['include_prepared']) {
+        $excluded = $this->isExcluded($file);
+
+        if ($excluded && $this->filters['include_prepared']) {
             return preg_match('#'.$this->filters['include_prepared'].'#', $file);
         }
 
-        return !$this->isExcluded($file);
+        return !$excluded;
     }
 
     private function isExcluded($file)
