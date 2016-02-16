@@ -37,14 +37,14 @@ class Git extends Controller
 
     public function diff()
     {
+        if (!($file = input('f'))) {
+            redirect(route('/git'));
+        }
+
         meta()->meta('title', 'GIT Diff');
 
         if (is_object($error = $this->check())) {
             return $error;
-        }
-
-        if (!($file = input('f'))) {
-            redirect(route('/git'));
         }
 
         return self::content('git.diff', array(
