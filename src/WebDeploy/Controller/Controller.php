@@ -1,6 +1,8 @@
 <?php
 namespace WebDeploy\Controller;
 
+use Exception as BaseException;
+
 use WebDeploy\Exception;
 use WebDeploy\Router\Router;
 use WebDeploy\Template\Template;
@@ -29,8 +31,8 @@ abstract class Controller
             if ($repository) {
                 static::checkRepository(($repository === true) ? $class : $repository);
             }
-        } catch (Exception $e) {
-            return static::error($module, $e->getMessage());
+        } catch (BaseException $e) {
+            return static::error(strtolower($class), $e->getMessage());
         }
     }
 
