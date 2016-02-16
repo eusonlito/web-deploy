@@ -31,7 +31,7 @@ class Config
         }
 
         if (is_file($file = $path.'/custom/'.$key.'.php')) {
-            $config = array_replace_recursive($config, require $file);
+            $config = array_replace($config, require $file);
         }
 
         return $config;
