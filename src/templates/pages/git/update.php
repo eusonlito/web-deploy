@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" data-loading>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title with-button">

@@ -2,6 +2,7 @@
 namespace WebDeploy\Shell;
 
 use WebDeploy\Exception;
+use WebDeploy\Filesystem\Directory;
 use WebDeploy\Router\Route;
 
 class Shell
@@ -31,9 +32,7 @@ class Shell
 
     private function setUp($path = null)
     {
-        if (!is_dir($logs = Route::getStoragePath('/logs'))) {
-            mkdir($logs, 0755, true);
-        }
+        Directory::create(Route::getStoragePath('/logs'));
 
         $this->cd($path ?: config('project')['path'] ?: Route::getBasePath());
     }

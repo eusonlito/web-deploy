@@ -28,7 +28,7 @@ class Ftp extends Controller
         if (is_object($response = $this->check(true, true))) {
             return $response;
         }
-exit;
+
         $config = config('ftp');
         $days = (int)input('days') ?: $config['days_history'];
 

@@ -4,7 +4,7 @@
     </div>
 
     <div class="panel-body">
-        <form method="post">
+        <form method="post" data-loading>
             <div class="form-group">
                 <button type="submit" name="find" value="true" class="btn btn-default form-control">
                     <?= __('Find changes in %s folder', $config['remote_path']); ?>

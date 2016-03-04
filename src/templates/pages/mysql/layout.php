@@ -8,6 +8,8 @@
     <div class="bs-docs-section">
         <ul class="nav nav-tabs" role="tablist">
             <li <?= ($ROUTE === 'mysql-index') ? 'class="active"' : ''; ?>><a href="<?= route('/mysql'); ?>"><?= __('Status'); ?></a></li>
+            <li <?= ($ROUTE === 'mysql-update') ? 'class="active"' : ''; ?>><a href="<?= route('/mysql/update'); ?>"><?= __('Update'); ?></a></li>
+            <li <?= ($ROUTE === 'mysql-log') ? 'class="active"' : ''; ?>><a href="<?= route('/mysql/log'); ?>"><?= __('Log'); ?></a></li>
         </ul>
 
         <div class="tab-content">
