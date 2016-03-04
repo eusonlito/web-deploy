@@ -8,4 +8,8 @@ jQuery(function($) {
             $(this).prop('checked', checked);
         });
     });
+
+    $('[data-loading]').on('submit', function() {
+        $('#loading').hide().removeClass('hidden').show();
+    });
 });

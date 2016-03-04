@@ -1,51 +1,29 @@
 <?php
 namespace WebDeploy\Filesystem;
 
-use WebDeploy\Exception;
-
 class File
 {
-    private $file;
-
-    public function create($file)
+    public static function temporal()
     {
-        $this->file = $file;
-
-        return $this;
+        return tempnam(sys_get_temp_dir(), uniqid());
     }
 
-    public function open($file)
+    public static function unique($file)
     {
-        if (!is_file($file)) {
-            throw new Exception\NotFoundException(__('File %s not exists', $file));
+        return dirname($file).'/'.microtime(true).'-'.uniqid().'-'.basename($file);
+    }
+
+    public static function write($file, $contents, $flag = null)
+    {
+        Directory::create(dirname($file));
+
+        return file_put_contents($file, $contents, $flag);
+    }
+
+    public static function read($file)
+    {
+        if (is_file($file)) {
+            return file_get_contents($file);
         }
-
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function temporal()
-    {
-        $this->file = tempnam(sys_get_temp_dir(), uniqid());
-
-        return $this;
-    }
-
-    public function write($contents, $flag = null)
-    {
-        file_put_contents($this->file, $contents, $flag);
-
-        return $this;
-    }
-
-    public function read()
-    {
-        return file_get_contents($this->file);
-    }
-
-    public function getFileName()
-    {
-        return $this->file;
     }
 }

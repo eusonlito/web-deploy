@@ -21,9 +21,10 @@ class Route
         static::$routes['libs_path'] = WD_LIBS_PATH;
         static::$routes['public_path'] = preg_replace('|^'.static::$routes['document_root'].'|i', '', static::$routes['base_path']) ?: '/';
         static::$routes['public_url'] = rtrim(static::$routes['connection_scheme'].'://'.getenv('SERVER_NAME').static::$routes['public_path'], '/');
-        static::$routes['template_path'] = WD_BASE_PATH.'/src/templates';
         static::$routes['storage_path'] = self::$routes['base_path'].'/storage';
         static::$routes['config_path'] = self::$routes['base_path'].'/config';
+        static::$routes['template_path'] = WD_BASE_PATH.'/src/templates';
+        static::$routes['bin_path'] = WD_BASE_PATH.'/src/bin';
     }
 
     public static function __callStatic($name, array $arguments)

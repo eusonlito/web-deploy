@@ -108,6 +108,15 @@ class Directory
         return array_keys(iterator_to_array($files));
     }
 
+    public static function create($folder)
+    {
+        if (!is_dir($folder)) {
+            mkdir($folder, 0755, true);
+        }
+
+        return $folder;
+    }
+
     private function scanRecursive()
     {
         $directory = new RecursiveDirectoryIterator($this->directory);
@@ -119,6 +128,21 @@ class Directory
 
         foreach ($iterator as $fileinfo) {
             if ($this->passFilters($file = $fileinfo->getPathname())) {
+                $files[] = $file;
+            }
+        }
+
+        return $files;
+    }
+
+    private function scan()
+    {
+        $this->prepareFilters();
+
+        $files = array();
+
+        foreach (glob($this->directory.'/*') as $file) {
+            if ($this->passFilters($file)) {
                 $files[] = $file;
             }
         }

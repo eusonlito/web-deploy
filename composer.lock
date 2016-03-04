@@ -54,20 +54,20 @@
         },
         {
             "name": "eusonlito/laravel-packer",
-            "version": "v2.0.8",
+            "version": "v2.0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eusonlito/laravel-Packer.git",
-                "reference": "d4741de2ff190f244569c865f6d303b8501ed218"
+                "reference": "fd66aa2bff380ecf783cbe1f6913997e03285913"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eusonlito/laravel-Packer/zipball/d4741de2ff190f244569c865f6d303b8501ed218",
-                "reference": "d4741de2ff190f244569c865f6d303b8501ed218",
+                "url": "https://api.github.com/repos/eusonlito/laravel-Packer/zipball/fd66aa2bff380ecf783cbe1f6913997e03285913",
+                "reference": "fd66aa2bff380ecf783cbe1f6913997e03285913",
                 "shasum": ""
             },
             "require": {
-                "imagecow/imagecow": "*",
+                "imagecow/imagecow": "1.5.*",
                 "php": ">=5.4"
             },
             "require-dev": {
@@ -102,20 +102,20 @@
                 "minify",
                 "packer"
             ],
-            "time": "2015-12-11 15:57:25"
+            "time": "2016-01-24 12:01:45"
         },
         {
             "name": "gettext/gettext",
-            "version": "v3.5.6",
+            "version": "v3.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/Gettext.git",
-                "reference": "ccf607daf072f54b5a868a58b6d8cf70310ff94d"
+                "reference": "5b1d69f5889513f7ed65060ad2a662ec3b0875c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/Gettext/zipball/ccf607daf072f54b5a868a58b6d8cf70310ff94d",
-                "reference": "ccf607daf072f54b5a868a58b6d8cf70310ff94d",
+                "url": "https://api.github.com/repos/oscarotero/Gettext/zipball/5b1d69f5889513f7ed65060ad2a662ec3b0875c7",
+                "reference": "5b1d69f5889513f7ed65060ad2a662ec3b0875c7",
                 "shasum": ""
             },
             "require": {
@@ -124,7 +124,6 @@
             },
             "require-dev": {
                 "illuminate/view": "*",
-                "phpunit/phpunit": "~4.0",
                 "twig/extensions": "*",
                 "twig/twig": "*"
             },
@@ -161,7 +160,7 @@
                 "po",
                 "translation"
             ],
-            "time": "2015-11-17 16:17:24"
+            "time": "2016-02-19 15:18:12"
         },
         {
             "name": "gettext/languages",
@@ -219,16 +218,16 @@
         },
         {
             "name": "imagecow/imagecow",
-            "version": "v1.5.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/imagecow.git",
-                "reference": "8e429a08b600a3d895b1591cd1486e7b85c16009"
+                "reference": "00330f3fa4be48973395faf9e464132ba035ad6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/imagecow/zipball/8e429a08b600a3d895b1591cd1486e7b85c16009",
-                "reference": "8e429a08b600a3d895b1591cd1486e7b85c16009",
+                "url": "https://api.github.com/repos/oscarotero/imagecow/zipball/00330f3fa4be48973395faf9e464132ba035ad6f",
+                "reference": "00330f3fa4be48973395faf9e464132ba035ad6f",
                 "shasum": ""
             },
             "require": {
@@ -257,7 +256,7 @@
             "keywords": [
                 "image"
             ],
-            "time": "2015-09-07 21:30:06"
+            "time": "2016-02-04 23:48:48"
         }
     ],
     "packages-dev": [],

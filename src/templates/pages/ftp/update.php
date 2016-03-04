@@ -4,7 +4,7 @@
     </div>
 
     <div class="panel-body">
-        <form method="post" class="form-group">
+        <form method="post" class="form-group" data-loading>
             <div class="input-group form-group">
                 <input type="number" name="days" value="<?= $days; ?>" placeholder="<?= __('Looking for files newer than N days'); ?>" class="form-control" />
 

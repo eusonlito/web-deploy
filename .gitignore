@@ -1,9 +1,7 @@
 /.composer
-/assets/cache/
-/assets/vendor
+/assets/cache
 /cache
 /config/custom
-/node_modules
 /src/vendor
 /src/WebDeploy/compiled.php
 /storage
