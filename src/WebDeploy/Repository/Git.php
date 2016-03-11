@@ -97,6 +97,12 @@ class Git extends Repository
 
     public function getLogSimpleList()
     {
+        $log = (new self($this->path))->getLogSimple()['success'];
+
+	if (empty($log)) {
+		return array();
+	}
+
         return array_map(function ($line) {
             $line = explode(' ', $line, 2);
 
@@ -104,17 +110,23 @@ class Git extends Repository
                 'hash' => $line[0],
                 'message' => preg_replace('/\s\+[0-9]{4}\s/', ' ', $line[1])
             );
-        }, explode("\n", (new self($this->path))->getLogSimple()['success']));
+        }, explode("\n", $log));
     }
 
     public function getBranchesList()
     {
+        $branches = (new self($this->path))->getBranches()['success'];
+
+	if (empty($branches)) {
+		return array();
+	}
+
         return array_map(function ($line) {
             return array(
                 'current' => preg_match('/^\*/', $line),
                 'name' => trim(preg_replace('/^\* /', '', $line))
             );
-        }, explode("\n", (new self($this->path))->getBranches()['success']));
+        }, explode("\n", $branches));
     }
 
     public function setDiffLinks(array $log)
