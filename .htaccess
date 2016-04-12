@@ -1,8 +1,12 @@
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
+<IfModule mod_negotiation.c>
+    Options -MultiViews
+</IfModule>
 
+<IfModule mod_env.c>
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+</IfModule>
+
+<IfModule mod_rewrite.c>
     RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...
