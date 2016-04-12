@@ -2,7 +2,6 @@
 namespace WebDeploy\Controller;
 
 use Exception as BaseException;
-
 use WebDeploy\Exception;
 use WebDeploy\Router\Router;
 use WebDeploy\Template\Template;

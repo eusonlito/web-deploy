@@ -48,7 +48,7 @@ class Mysql extends Controller
 
         $dumps = Repository\Mysql::getDumpFolder();
 
-        $files = array_map(function($value) {
+        $files = array_map(function ($value) {
             return basename($value);
         }, (new Filesystem\Directory($dumps))->get());
 

@@ -8,29 +8,6 @@ class Basic
         static::checkAuth() or die(static::authHeaders());
     }
 
-    private static function getUserPassword()
-    {
-        return static::phpAuthUser() ?: static::httpAuthorization() ?: array('', '');
-    }
-
-    private static function phpAuthUser()
-    {
-        if (!empty($_SERVER['PHP_AUTH_USER'])) {
-            return array($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
-        }
-    }
-
-    private static function httpAuthorization()
-    {
-        if (empty($_SERVER['HTTP_AUTHORIZATION'])) {
-            return;
-        }
-
-        $auth = base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6));
-
-        return strstr($auth, ':') ? explode(':', $auth) : null;
-    }
-
     private static function checkAuth()
     {
         list($user, $password) = static::getUserPassword();
@@ -40,6 +17,29 @@ class Basic
                 return true;
             }
         }
+    }
+
+    private static function getUserPassword()
+    {
+        return static::authFromPhpAuthUser() ?: static::authFromHttpAuthorization() ?: array('', '');
+    }
+
+    private static function authFromPhpAuthUser()
+    {
+        if (!empty($_SERVER['PHP_AUTH_USER'])) {
+            return array($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+        }
+    }
+
+    private static function authFromHttpAuthorization()
+    {
+        if (empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            return;
+        }
+
+        $auth = base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6));
+
+        return strstr($auth, ':') ? explode(':', $auth) : null;
     }
 
     private static function authHeaders()
