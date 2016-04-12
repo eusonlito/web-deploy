@@ -10,24 +10,36 @@ class Basic
 
     private static function getUserPassword()
     {
-        if (isset($_SERVER['PHP_AUTH_USER'])) {
+        return static::phpAuthUser() ?: static::httpAuthorization() ?: array('', '');
+    }
+
+    private static function phpAuthUser()
+    {
+        if (!empty($_SERVER['PHP_AUTH_USER'])) {
             return array($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
         }
+    }
 
-        if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-            return explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+    private static function httpAuthorization()
+    {
+        if (empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            return;
         }
 
-        return array('', '');
+        $auth = base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6));
+
+        return strstr($auth, ':') ? explode(':', $auth) : null;
     }
 
     private static function checkAuth()
     {
         list($user, $password) = static::getUserPassword();
 
-        $config = config('auth')['basic'];
-
-        return (($config['user'] === $user) && ($config['password'] === $password));
+        foreach (config('auth')['basic'] as $basicUser => $basicPassword) {
+            if (($basicUser === $user) && ($basicPassword === $password)) {
+                return true;
+            }
+        }
     }
 
     private static function authHeaders()

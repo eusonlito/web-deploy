@@ -1,9 +1,8 @@
 <?php
 return array(
-    'enabled' => '',
+    'enabled' => 'basic',
 
     'basic' => array(
-        'user' => 'user',
-        'password' => 'password'
+        'user' => 'password' // 'user' => 'password'
     )
 );
