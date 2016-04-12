@@ -99,9 +99,9 @@ class Git extends Repository
     {
         $log = (new self($this->path))->getLogSimple()['success'];
 
-	if (empty($log)) {
-		return array();
-	}
+        if (empty($log)) {
+            return array();
+        }
 
         return array_map(function ($line) {
             $line = explode(' ', $line, 2);
@@ -117,9 +117,9 @@ class Git extends Repository
     {
         $branches = (new self($this->path))->getBranches()['success'];
 
-	if (empty($branches)) {
-		return array();
-	}
+        if (empty($branches)) {
+            return array();
+        }
 
         return array_map(function ($line) {
             return array(
@@ -131,7 +131,7 @@ class Git extends Repository
 
     public function setDiffLinks(array $log)
     {
-        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w/\.]+)#', function($matches) {
+        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w/\.]+)#', function ($matches) {
             return $matches[1].'<a href="'.route('/git/diff').'?f='.urlencode($matches[2]).'">'.$matches[2].'</a>';
         }, $log['success']);
 

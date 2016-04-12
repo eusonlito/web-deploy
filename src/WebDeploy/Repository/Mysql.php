@@ -3,7 +3,6 @@ namespace WebDeploy\Repository;
 
 use Exception as BaseException;
 use PDO;
-
 use WebDeploy\Exception;
 use WebDeploy\Filesystem;
 use WebDeploy\Router\Route;
@@ -42,7 +41,7 @@ class Mysql extends Repository
         return $this;
     }
 
-    private function getDSN ()
+    private function getDSN()
     {
         $dsn = 'mysql:host='.$this->config['host'];
 
@@ -115,8 +114,13 @@ class Mysql extends Repository
             ->getLog();
 
         if ($delete) {
-            if (is_file($sql1)) unlink($sql1);
-            if (is_file($sql2)) unlink($sql2);
+            if (is_file($sql1)) {
+                unlink($sql1);
+            }
+
+            if (is_file($sql2)) {
+                unlink($sql2);
+            }
         }
 
         if ($log['error']) {
