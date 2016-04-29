@@ -1,11 +1,5 @@
 /.composer
-/assets/cache
 /cache
-/config/custom
-/src/bin/logs
-/src/vendor
-/src/WebDeploy/compiled.php
-/storage
 
 *.sh
 *.swp

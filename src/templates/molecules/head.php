@@ -10,6 +10,6 @@
 <?= packer()->css([
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
     'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
-    '/assets/css/bootstrap-docs.min.css',
-    '/assets/css/custom.css'
+    '/src/templates/assets/css/bootstrap-docs.min.css',
+    '/src/templates/assets/css/custom.css'
 ], '/storage/assets/css/styles.css'); ?>
