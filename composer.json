@@ -10,11 +10,10 @@
         }
     ],
     "config": {
-        "vendor-dir": "src/vendor"
+        "vendor-dir": "vendor"
     },
     "require": {
         "php": ">=5.4",
-        "gettext/gettext": "3.5.*",
         "eusonlito/laravel-meta": "2.*",
         "eusonlito/laravel-packer": "2.*"
     },

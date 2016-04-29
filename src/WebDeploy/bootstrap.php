@@ -14,12 +14,13 @@ if (!ini_get('date.timezone')) {
 define('WD_TIME', microtime(true));
 define('WD_BASE_PATH', rtrim(realpath(__DIR__.'/../..'), '/'));
 define('WD_LIBS_PATH', WD_BASE_PATH.'/src/WebDeploy');
+define('WD_VENDOR_PATH', WD_BASE_PATH.'/vendor');
 
-require WD_BASE_PATH.'/src/vendor/autoload.php';
+require WD_VENDOR_PATH.'/autoload.php';
 require WD_LIBS_PATH.'/helpers.php';
 
-if (is_file(WD_LIBS_PATH.'/compiled.php')) {
-    require WD_LIBS_PATH.'/compiled.php';
+if (is_file(WD_VENDOR_PATH.'/compiled.php')) {
+    require WD_VENDOR_PATH.'/compiled.php';
 } else {
     require WD_LIBS_PATH.'/autoload.php';
 }
@@ -27,5 +28,3 @@ if (is_file(WD_LIBS_PATH.'/compiled.php')) {
 register_shutdown_function(array('WebDeploy\Handler\Shutdown', 'handle'));
 set_error_handler(array('WebDeploy\Handler\Error', 'handle'));
 set_exception_handler(array('WebDeploy\Handler\Exception', 'handle'));
-
-WebDeploy\I18n\Gettext::load('es');
