@@ -24,12 +24,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php command clear-compiled",
+            "php bin/command clear-compiled",
             "composer dump-autoload --optimize",
-            "php command compile"
+            "php bin/command compile"
         ],
         "post-update-cmd": [
-            "php command clear-compiled",
+            "php bin/command clear-compiled",
             "composer dump-autoload --optimize"
         ]
     },
