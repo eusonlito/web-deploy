@@ -20,7 +20,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title with-button">
-                <?= __('Discover all branches and changes without update code'); ?>
+                <?= __('Discover all code changes without apply merges'); ?>
 
                 <button type="submit" name="processor" value="git-fetch" class="btn btn-success pull-right xxs-block">
                     <?= __('Git FETCH'); ?>
