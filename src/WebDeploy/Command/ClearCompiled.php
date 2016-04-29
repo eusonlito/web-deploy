@@ -10,7 +10,7 @@ class ClearCompiled
 {
     public function run()
     {
-        $compiled = WD_LIBS_PATH.'/compiled.php';
+        $compiled = WD_VENDOR_PATH.'/compiled.php';
 
         if (is_file($compiled)) {
             unlink($compiled);

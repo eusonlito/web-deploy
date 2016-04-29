@@ -27,5 +27,5 @@
 <?= packer()->js([
     'https://code.jquery.com/jquery-2.2.0.min.js',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
-    '/assets/js/custom.js'
+    '/src/templates/assets/js/custom.js'
 ], '/storage/assets/js/scripts.js'); ?>

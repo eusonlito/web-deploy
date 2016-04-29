@@ -10,19 +10,13 @@ class Compile
 {
     public function run($arguments)
     {
-        $compiled = WD_LIBS_PATH.'/compiled.php';
-
-        if (is_file($compiled)) {
-            unlink($compiled);
-        }
-
         $code = '<?php';
 
-        foreach ($this->getfilesRecursive(WD_LIBS_PATH) as $file) {
+        foreach ($this->getFilesRecursive(WD_LIBS_PATH) as $file) {
             $code .= $this->getFileCode($file);
         }
 
-        file_put_contents($compiled, trim($code));
+        file_put_contents(WD_VENDOR_PATH.'/compiled.php', trim($code));
     }
 
     private function getFilesRecursive($dir)
