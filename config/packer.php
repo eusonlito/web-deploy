@@ -6,7 +6,7 @@ return array(
     'ignore_environments' => [],
     'public_path' => Route::getBasePath(),
     'asset' => Route::getPublicUrl(),
-    'cache_folder' => Route::getStoragePath('/cache'),
+    'cache_folder' => Route::getStoragePath('/assets'),
     'check_timestamps' => true,
     'css_minify' => true,
     'js_minify' => true,
