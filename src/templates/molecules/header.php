@@ -14,11 +14,7 @@
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <?php
-                foreach (['git', 'ftp', 'rsync', 'mysql', 'admin'] as $module) {
-                    if (!in_array($module, $MODULES, true)) {
-                        continue;
-                    }
-
+                foreach ($MODULES as $module) {
                     echo '<li '.((strpos($ROUTE, $module.'-') === 0) ? 'class="active"' : '').'>'
                         .'<a href="'.route('/'.$module).'">'.$module.'</a>'
                         .'</li>';
