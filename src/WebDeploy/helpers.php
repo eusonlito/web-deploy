@@ -8,6 +8,17 @@ use WebDeploy\Router\Route;
 use WebDeploy\Template\Html;
 use WebDeploy\Template\Template;
 
+function __($text)
+{
+    if (func_num_args() === 1) {
+        return $text;
+    }
+
+    $args = array_slice(func_get_args(), 1);
+
+    return vsprintf($text, is_array($args[0]) ? $args[0] : $args);
+}
+
 function d($title, $message = null, $trace = null)
 {
     Dump::debug($title, $message, $trace);
