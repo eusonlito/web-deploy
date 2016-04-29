@@ -7,6 +7,10 @@
 
 ## Install
 
+* Install in your production server if you want to update your project from `GIT`.
+* Install in your develop server if you want to update your production server from `FTP` or `RSYNC`.
+* `RSYNC` only works with public keys. You must have the keys of develop web user installed in your production server.
+
 ```
 $> git clone git@github.com:eusonlito/web-deploy.git
 $> cd web-deploy
