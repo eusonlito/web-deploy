@@ -24,7 +24,6 @@ class Route
         static::$routes['storage_path'] = self::$routes['base_path'].'/storage';
         static::$routes['config_path'] = self::$routes['base_path'].'/config';
         static::$routes['template_path'] = WD_BASE_PATH.'/src/templates';
-        static::$routes['bin_path'] = WD_BASE_PATH.'/src/bin';
     }
 
     public static function __callStatic($name, array $arguments)
