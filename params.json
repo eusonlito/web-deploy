@@ -1,0 +1,6 @@
+{
+  "name": "web-deploy",
+  "tagline": "Easy panel to web deploy",
+  "body": "# web-deploy\r\n\r\n## Requirements\r\n\r\n* PHP 5.4\r\n* Composer | https://getcomposer.org/download/\r\n\r\n## Install\r\n\r\n```\r\n$> git clone git@github.com:eusonlito/web-deploy.git\r\n$> cd web-deploy\r\n$> composer install\r\n```\r\n\r\n## Configuration\r\n\r\n* Set write permissions to web service user to `storage/logs/` and `storage/assets/` folders\r\n* Configuration files are in `config/` folder\r\n* Create a copy into `config/custom/` to customize configurations\r\n* At first, copy `config/auth.php` into `config/custom/` and configure a basic auth user/password\r\n* Now you can login with http://yoursite.com/web-deploy/\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
