@@ -17,6 +17,10 @@ class Git extends Processor
                 $status = $this->gitPull();
                 break;
 
+            case 'git-fetch':
+                $status = $this->gitFetch();
+                break;
+
             case 'git-reset':
                 $status = $this->gitReset();
                 break;
@@ -48,6 +52,11 @@ class Git extends Processor
     protected function gitPull()
     {
         return $this->exec('pull');
+    }
+
+    protected function gitFetch()
+    {
+        return $this->exec('fetch');
     }
 
     protected function gitReset()
