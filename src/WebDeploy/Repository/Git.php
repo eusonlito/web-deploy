@@ -60,6 +60,11 @@ class Git extends Repository
         return $this->exec('git pull');
     }
 
+    public function fetch()
+    {
+        return $this->exec('git fetch --all');
+    }
+
     public function reset()
     {
         return $this->exec('git reset --hard');

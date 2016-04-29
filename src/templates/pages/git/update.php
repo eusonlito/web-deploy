@@ -20,6 +20,24 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title with-button">
+                <?= __('Discover all branches and changes without update code'); ?>
+
+                <button type="submit" name="processor" value="git-fetch" class="btn btn-success pull-right xxs-block">
+                    <?= __('Git FETCH'); ?>
+                </button>
+            </h3>
+        </div>
+
+        <?php if (isset($processor['git-fetch'])) { ?>
+        <div class="panel-body">
+            <?= shellResponse($processor['git-fetch']); ?>
+        </div>
+        <?php } ?>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title with-button">
                 <?= __('Update Composer packages'); ?>
 
                 <button type="submit" name="processor" value="composer-install" class="btn btn-success pull-right xxs-block">
@@ -84,7 +102,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <?= __('Branch change'); ?>
+                <?= __('Fetch all changes and branches'); ?>
             </h3>
         </div>
 
