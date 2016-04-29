@@ -3,6 +3,6 @@ return array(
     'enabled' => 'basic',
 
     'basic' => array(
-        'user' => 'password' // 'user' => 'password'
+        'user' => uniqid() // 'user' => 'password'
     )
 );
