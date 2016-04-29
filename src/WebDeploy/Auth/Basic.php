@@ -33,11 +33,17 @@ class Basic
 
     private static function authFromHttpAuthorization()
     {
-        if (empty($_SERVER['HTTP_AUTHORIZATION'])) {
+        if (empty($_SERVER['HTTP_AUTHORIZATION']) && empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
             return;
         }
 
-        $auth = base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6));
+        if (empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            $auth = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+        } else {
+            $auth = $_SERVER['HTTP_AUTHORIZATION'];
+        }
+
+        $auth = base64_decode(substr($auth, 6));
 
         return strstr($auth, ':') ? explode(':', $auth) : null;
     }
