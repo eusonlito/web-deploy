@@ -21,6 +21,8 @@
                 }
                 ?>
             </ul>
+
+            <a href="<?= config('project')['www']; ?>" class="nav-www" target="_blank">WWW</a></li>
         </nav>
     </div>
 </header>
