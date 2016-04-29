@@ -12,7 +12,7 @@
 * `RSYNC` only works with public keys. You must have the keys of develop web user installed in your production server.
 
 ```
-$> git clone git@github.com:eusonlito/web-deploy.git
+$> git clone https://github.com/eusonlito/web-deploy.git
 $> cd web-deploy
 $> composer install
 ```
