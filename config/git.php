@@ -1,4 +1,4 @@
 <?php
 return array(
-    'log_history' => 50
+    'log_history' => 10
 );
