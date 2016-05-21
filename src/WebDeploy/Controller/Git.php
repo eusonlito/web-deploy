@@ -29,9 +29,27 @@ class Git extends Controller
 
         return self::content('git.index', array(
             'branch' => array_shift($logs),
-            'commit' => array_shift($logs),
+            'commit' => $this->git()->setCommitLinks(array_shift($logs)),
             'status' => $this->git()->setDiffLinks(array_shift($logs)),
             'path' => array_shift($logs)
+        ));
+    }
+
+    public function commit()
+    {
+        if (!($hash = input('h'))) {
+            redirect(route('/git'));
+        }
+
+        meta()->meta('title', 'GIT Commit');
+
+        if (is_object($error = $this->check())) {
+            return $error;
+        }
+
+        return self::content('git.commit', array(
+            'hash' => $hash,
+            'log' => $this->git()->show($hash)->getShellAndLog()
         ));
     }
 
@@ -80,11 +98,12 @@ class Git extends Controller
             return $error;
         }
 
+        $git = $this->git();
         $last = (int)input('last') ?: config('git')['log_history'];
 
         return self::content('git.log', array(
             'last' => $last,
-            'log' => $this->git()->getLogStat($last)
+            'log' => $git->setCommitLinks($git->getLogStat($last))
         ));
     }
 }

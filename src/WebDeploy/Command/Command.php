@@ -9,9 +9,9 @@ class Command
             dd('Command not valid');
         }
 
-        $class = static::getClass($command);
+        $class = self::getClass($command);
 
-        static::classExists($class);
+        self::classExists($class);
 
         (new $class)->run($arguments);
     }

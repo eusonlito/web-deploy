@@ -8,6 +8,7 @@
     <div class="bs-docs-section">
         <ul class="nav nav-tabs" role="tablist">
             <li <?= ($ROUTE === 'git-index') ? 'class="active"' : ''; ?>><a href="<?= route('/git'); ?>"><?= __('Status'); ?></a></li>
+            <?php if ($ROUTE === 'git-commit') { ?><li class="active"><a href=""><?= __('Commit'); ?></a></li><?php } ?>
             <?php if ($ROUTE === 'git-diff') { ?><li class="active"><a href=""><?= __('Diff'); ?></a></li><?php } ?>
             <li <?= ($ROUTE === 'git-update') ? 'class="active"' : ''; ?>><a href="<?= route('/git/update'); ?>"><?= __('Update'); ?></a></li>
             <li <?= ($ROUTE === 'git-log') ? 'class="active"' : ''; ?>><a href="<?= route('/git/log'); ?>"><?= __('Log'); ?></a></li>

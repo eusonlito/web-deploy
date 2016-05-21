@@ -75,6 +75,11 @@ class Git extends Repository
         return $this->exec('git checkout '.$hash);
     }
 
+    public function show($hash)
+    {
+        return $this->exec('git show '.$hash);
+    }
+
     public function diff($file)
     {
         return $this->exec('git diff '.$file);
@@ -134,9 +139,31 @@ class Git extends Repository
         }, explode("\n", $branches));
     }
 
+    public function setLinks(array $log)
+    {
+        return self::setDiffLinks(self::setCommitLinks($log));
+    }
+
+    public function setCommitLinks(array $log)
+    {
+        if (empty($log['success'])) {
+            return $log;
+        }
+
+        $log['success'] = preg_replace_callback('#commit\s+([a-z0-9]{40})#', function ($matches) {
+            return 'commit <a href="'.route('/git/commit').'?h='.urlencode($matches[1]).'">'.$matches[1].'</a>';
+        }, $log['success']);
+
+        return $log;
+    }
+
     public function setDiffLinks(array $log)
     {
-        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w/\.]+)#', function ($matches) {
+        if (empty($log['success'])) {
+            return $log;
+        }
+
+        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w\-/\.]+)#', function ($matches) {
             return $matches[1].'<a href="'.route('/git/diff').'?f='.urlencode($matches[2]).'">'.$matches[2].'</a>';
         }, $log['success']);
 

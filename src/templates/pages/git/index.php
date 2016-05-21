@@ -24,7 +24,7 @@
     </div>
 
     <div class="panel-body">
-        <?= shellResponse($commit); ?>
+        <?= shellResponse($commit, false); ?>
     </div>
 </div>
 
@@ -34,6 +34,6 @@
     </div>
 
     <div class="panel-body">
-        <?= shellResponse($status); ?>
+        <?= shellResponse($status, false); ?>
     </div>
 </div>

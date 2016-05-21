@@ -15,7 +15,7 @@ class Template
 
     public static function getInstance()
     {
-        return static::$instance ?: (static::$instance = new self);
+        return self::$instance ?: (self::$instance = new self);
     }
 
     public function __construct()

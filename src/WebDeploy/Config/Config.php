@@ -9,16 +9,16 @@ class Config
 
     public static function get($key)
     {
-        if (!array_key_exists($key, static::$config)) {
-            static::$config[$key] = static::loadFile($key);
+        if (!array_key_exists($key, self::$config)) {
+            self::$config[$key] = self::loadFile($key);
         }
 
-        return static::$config[$key];
+        return self::$config[$key];
     }
 
     public static function set($key, $value)
     {
-        static::$config[$key] = $value;
+        self::$config[$key] = $value;
     }
 
     private static function loadFile($key)

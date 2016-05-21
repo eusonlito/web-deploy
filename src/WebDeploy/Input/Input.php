@@ -7,33 +7,33 @@ class Input
 
     private static function load()
     {
-        if (empty(static::$input)) {
-            static::$input = array_merge($_GET, $_POST);
+        if (empty(self::$input)) {
+            self::$input = array_merge($_GET, $_POST);
         }
     }
 
     public static function get($name = null)
     {
-        static::load();
+        self::load();
 
         if ($name === null) {
-            return static::$input;
+            return self::$input;
         }
 
-        return array_key_exists($name, static::$input) ? static::$input[$name] : null;
+        return array_key_exists($name, self::$input) ? self::$input[$name] : null;
     }
 
     public static function set($name, $value)
     {
-        static::load();
+        self::load();
 
-        static::$input[$name] = $value;
+        self::$input[$name] = $value;
     }
 
     public static function merge(array $values)
     {
-        static::load();
+        self::load();
 
-        static::$input = array_merge(static::$input, $values);
+        self::$input = array_merge(self::$input, $values);
     }
 }
