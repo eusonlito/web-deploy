@@ -136,7 +136,7 @@ class Git extends Repository
 
     public function setDiffLinks(array $log)
     {
-        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w/\.]+)#', function ($matches) {
+        $log['success'] = preg_replace_callback('#(\s+[a-z]+:\s+)([\w\-/\.]+)#', function ($matches) {
             return $matches[1].'<a href="'.route('/git/diff').'?f='.urlencode($matches[2]).'">'.$matches[2].'</a>';
         }, $log['success']);
 

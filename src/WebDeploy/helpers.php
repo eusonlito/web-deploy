@@ -56,9 +56,9 @@ function input($name = null, $value = null)
     return (func_num_args() === 2) ? Input::set($name, $value) : Input::get($name);
 }
 
-function shellResponse($response)
+function shellResponse($response, $encode = true)
 {
-    return Html::shellResponse($response);
+    return Html::shellResponse($response, $encode);
 }
 
 function meta()

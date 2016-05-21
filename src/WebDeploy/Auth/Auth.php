@@ -11,7 +11,7 @@ class Auth
             return true;
         }
 
-        $class = static::getClass($config['enabled']);
+        $class = self::getClass($config['enabled']);
 
         return $class::check();
     }

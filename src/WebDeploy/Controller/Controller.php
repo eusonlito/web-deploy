@@ -24,14 +24,14 @@ abstract class Controller
 
         try {
             if ($module) {
-                static::checkModule(strtolower($class));
+                self::checkModule(strtolower($class));
             }
 
             if ($repository) {
-                static::checkRepository(($repository === true) ? $class : $repository);
+                self::checkRepository(($repository === true) ? $class : $repository);
             }
         } catch (BaseException $e) {
-            return static::error(strtolower($class), $e->getMessage());
+            return self::error(strtolower($class), $e->getMessage());
         }
     }
 
@@ -55,14 +55,14 @@ abstract class Controller
 
     protected static function page($name, $file, array $parameters = array())
     {
-        return static::template($name, 'pages.'.$file, $parameters);
+        return self::template($name, 'pages.'.$file, $parameters);
     }
 
     protected static function content($file, array $parameters = array())
     {
-        static::page('body', explode('.', $file)[0].'.layout');
+        self::page('body', explode('.', $file)[0].'.layout');
 
-        return static::page('content', $file, $parameters);
+        return self::page('content', $file, $parameters);
     }
 
     protected static function template($name, $file, array $parameters = array())
@@ -72,9 +72,9 @@ abstract class Controller
 
     protected static function error($layout, $message)
     {
-        static::page('body', $layout.'.layout');
+        self::page('body', $layout.'.layout');
 
-        return static::template('content', 'molecules.error', array(
+        return self::template('content', 'molecules.error', array(
             'message' => $message
         ));
     }

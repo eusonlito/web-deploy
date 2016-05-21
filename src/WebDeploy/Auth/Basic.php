@@ -5,12 +5,12 @@ class Basic
 {
     public static function check()
     {
-        static::checkAuth() or die(static::authHeaders());
+        self::checkAuth() or die(self::authHeaders());
     }
 
     private static function checkAuth()
     {
-        list($user, $password) = static::getUserPassword();
+        list($user, $password) = self::getUserPassword();
 
         foreach (config('auth')['basic'] as $basicUser => $basicPassword) {
             if (($basicUser === $user) && ($basicPassword === $password)) {
@@ -21,7 +21,7 @@ class Basic
 
     private static function getUserPassword()
     {
-        return static::authFromPhpAuthUser() ?: static::authFromHttpAuthorization() ?: array('', '');
+        return self::authFromPhpAuthUser() ?: self::authFromHttpAuthorization() ?: array('', '');
     }
 
     private static function authFromPhpAuthUser()

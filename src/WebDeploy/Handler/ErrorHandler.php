@@ -9,18 +9,18 @@ abstract class ErrorHandler
             return;
         }
 
-        die(static::printError($errno, $errstr, $errfile, $errline));
+        die(self::printError($errno, $errstr, $errfile, $errline));
     }
 
     protected static function printError($errno, $errstr, $errfile, $errline)
     {
         template()->show('layout.error', array(
             'number' => $errno,
-            'code' => static::getErrorName($errno),
+            'code' => self::getErrorName($errno),
             'message' => $errstr,
-            'file' => static::getFileName($errfile),
+            'file' => self::getFileName($errfile),
             'line' => $errline,
-            'trace' => static::getTrace()
+            'trace' => self::getTrace()
         ));
     }
 
@@ -55,7 +55,7 @@ abstract class ErrorHandler
             }
 
             $trace[] = array(
-                'file' => static::getFileName($line['file']),
+                'file' => self::getFileName($line['file']),
                 'line' => (isset($line['line']) ? $line['line'] : ''),
                 'function' => (isset($line['function']) ? $line['function'] : ''),
                 'class' => (isset($line['class']) ? $line['class'] : '')
