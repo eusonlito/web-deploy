@@ -6,14 +6,14 @@ use WebDeploy\Repository;
 
 class Git extends Controller
 {
-    public function git()
+    private function git()
     {
         return new Repository\Git;
     }
 
     public function index()
     {
-        meta()->meta('title', 'GIT Status');
+        meta()->set('title', 'GIT Status');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -41,7 +41,7 @@ class Git extends Controller
             redirect(route('/git'));
         }
 
-        meta()->meta('title', 'GIT Commit');
+        meta()->set('title', 'GIT Commit');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -59,7 +59,7 @@ class Git extends Controller
             redirect(route('/git'));
         }
 
-        meta()->meta('title', 'GIT Diff');
+        meta()->set('title', 'GIT Diff');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -73,7 +73,7 @@ class Git extends Controller
 
     public function update()
     {
-        meta()->meta('title', 'GIT Update');
+        meta()->set('title', 'GIT Update');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -92,7 +92,7 @@ class Git extends Controller
 
     public function log()
     {
-        meta()->meta('title', 'GIT Log');
+        meta()->set('title', 'GIT Log');
 
         if (is_object($error = $this->check())) {
             return $error;

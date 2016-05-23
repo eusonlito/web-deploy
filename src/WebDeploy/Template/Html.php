@@ -1,8 +1,6 @@
 <?php
 namespace WebDeploy\Template;
 
-use WebDeploy\Router;
-
 class Html
 {
     public static function shellResponse($response, $encode = true)

@@ -12,14 +12,14 @@ class Admin extends Controller
         return parent::check(true, ['git', 'composer']);
     }
 
-    public function git()
+    private function git()
     {
         return new Repository\Git(Route::getBasePath());
     }
 
     public function index()
     {
-        meta()->meta('title', 'Web Deploy Status');
+        meta()->set('title', 'Web Deploy Status');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -43,7 +43,7 @@ class Admin extends Controller
 
     public function update()
     {
-        meta()->meta('title', 'Web Deploy Update');
+        meta()->set('title', 'Web Deploy Update');
 
         if (is_object($error = $this->check())) {
             return $error;
@@ -62,7 +62,7 @@ class Admin extends Controller
 
     public function log()
     {
-        meta()->meta('title', 'Web Deploy Log');
+        meta()->set('title', 'Web Deploy Log');
 
         if (is_object($error = $this->check())) {
             return $error;

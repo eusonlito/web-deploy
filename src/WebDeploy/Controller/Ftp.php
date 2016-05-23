@@ -8,7 +8,7 @@ class Ftp extends Controller
 {
     public function index()
     {
-        meta()->meta('title', 'FTP Status');
+        meta()->set('title', 'FTP Status');
 
         if (is_object($response = $this->check(true, false))) {
             return $response;
@@ -23,7 +23,7 @@ class Ftp extends Controller
 
     public function update()
     {
-        meta()->meta('title', 'FTP Update');
+        meta()->set('title', 'FTP Update');
 
         if (is_object($response = $this->check(true, true))) {
             return $response;

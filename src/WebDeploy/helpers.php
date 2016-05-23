@@ -1,11 +1,11 @@
 <?php
-use Eusonlito\LaravelMeta\Meta;
-use Eusonlito\LaravelPacker\Packer;
 use WebDeploy\Config\Config;
 use WebDeploy\Input\Input;
 use WebDeploy\Log\Dump;
 use WebDeploy\Router\Route;
 use WebDeploy\Template\Html;
+use WebDeploy\Template\Meta;
+use Eusonlito\LaravelPacker\Packer;
 use WebDeploy\Template\Template;
 
 function __($text)

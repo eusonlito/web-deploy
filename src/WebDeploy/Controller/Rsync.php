@@ -7,14 +7,14 @@ use WebDeploy\Shell\Shell;
 
 class Rsync extends Controller
 {
-    public function rsync()
+    private function rsync()
     {
         return new Repository\Rsync;
     }
 
     public function index()
     {
-        meta()->meta('title', 'RSYNC Status');
+        meta()->set('title', 'RSYNC Status');
 
         if (is_object($error = $this->check(true, false))) {
             return $error;
@@ -30,7 +30,7 @@ class Rsync extends Controller
 
     public function update()
     {
-        meta()->meta('title', 'RSYNC Update');
+        meta()->set('title', 'RSYNC Update');
 
         if (is_object($response = $this->check())) {
             return $response;

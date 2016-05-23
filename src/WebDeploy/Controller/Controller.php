@@ -10,7 +10,7 @@ abstract class Controller
 {
     public function __construct(Router $router)
     {
-        meta()->title('Web Deploy');
+        meta()->set('title', 'Web Deploy');
 
         template()->share(array(
             'ROUTE' => $router->getRoute(),

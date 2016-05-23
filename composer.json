@@ -14,7 +14,6 @@
     },
     "require": {
         "php": ">=5.4",
-        "eusonlito/laravel-meta": "2.*",
         "eusonlito/laravel-packer": "2.*"
     },
     "autoload": {
