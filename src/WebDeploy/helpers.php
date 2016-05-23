@@ -5,7 +5,7 @@ use WebDeploy\Log\Dump;
 use WebDeploy\Router\Route;
 use WebDeploy\Template\Html;
 use WebDeploy\Template\Meta;
-use Eusonlito\LaravelPacker\Packer;
+use WebDeploy\Template\Packer;
 use WebDeploy\Template\Template;
 
 function __($text)
@@ -43,7 +43,7 @@ function template()
 
 function asset($file)
 {
-    return Route::getPublicUrl('/assets'.$file);
+    return Route::getPublicUrl('/storage/assets/'.ltrim($file, '/'));
 }
 
 function route($path)
@@ -68,7 +68,7 @@ function meta()
 
 function packer()
 {
-    return Packer::getInstance(config('packer'));
+    return Packer::getInstance();
 }
 
 function config($name = null, $value = null)

@@ -18,14 +18,13 @@
 
         <ul class="bs-docs-footer-links">
             <li><a href="https://github.com/eusonlito/web-deploy">GitHub</a></li>
+            <li><?= __('Code licensed <a rel="license" href="https://github.com/eusonlito/web-deploy/blob/master/LICENSE" target="_blank">MIT</a>'); ?></li>
         </ul>
-
-        <p><?= __('Code licensed <a rel="license" href="https://github.com/eusonlito/web-deploy/blob/master/LICENSE" target="_blank">MIT</a>.'); ?></p>
     </div>
 </footer>
 
 <?= packer()->js([
     'https://code.jquery.com/jquery-2.2.0.min.js',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
-    '/src/templates/assets/js/custom.js'
-], '/storage/assets/js/scripts.js'); ?>
+    '/js/custom.js'
+]); ?>

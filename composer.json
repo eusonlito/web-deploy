@@ -13,8 +13,7 @@
         "vendor-dir": "vendor"
     },
     "require": {
-        "php": ">=5.4",
-        "eusonlito/laravel-packer": "2.*"
+        "php": ">=5.4"
     },
     "autoload": {
         "psr-4": {

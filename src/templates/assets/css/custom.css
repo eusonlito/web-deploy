@@ -41,6 +41,11 @@ a, .bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav > li > a, .bs-docs-nav .
     margin: 0;
 }
 
+.bs-docs-footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .tab-content > .tab-pane {
     padding: 20px 0;
 }
