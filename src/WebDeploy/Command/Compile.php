@@ -27,7 +27,25 @@ class Compile
         $iterator = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
         $files = new RegexIterator($iterator, '/^.+\.php$/', RecursiveRegexIterator::GET_MATCH);
 
-        return array_keys(iterator_to_array($files));
+        $files = array_keys(iterator_to_array($files));
+
+        usort($files, array($this, 'sort'));
+
+        return $files;
+    }
+
+    private function sort($a, $b)
+    {
+        $a = file_get_contents($a);
+        $b = file_get_contents($b);
+
+        if (strstr($a, ' extends ')) {
+            return 1;
+        } if (strstr($b, ' extends ')) {
+            return -1;
+        }
+
+        return strstr($a, ' use ') ? 1 : -1;
     }
 
     private function getFileCode($file)
