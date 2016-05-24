@@ -67,11 +67,11 @@ class Shell
 
         shell_exec($this->getCMD($cmd).' > "'.$success.'" 2> "'.$error.'"');
 
-        $this->logs[] = [
+        $this->logs[] = array(
             'command' => $cmd,
             'success' => trim(file_get_contents($success)),
             'error' => trim(file_get_contents($error)),
-        ];
+        );
 
         if ($this->log === false) {
             unlink($success);

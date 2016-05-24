@@ -45,7 +45,7 @@ abstract class Controller
     protected static function checkRepository($repositories)
     {
         $namespace = str_replace('Controller', 'Repository', __NAMESPACE__);
-        $repositories = is_array($repositories) ? $repositories : [$repositories];
+        $repositories = is_array($repositories) ? $repositories : array($repositories);
 
         foreach ($repositories as $repository) {
             $repository = $namespace.'\\'.ucfirst($repository);

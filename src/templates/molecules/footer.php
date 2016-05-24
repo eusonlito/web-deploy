@@ -23,8 +23,8 @@
     </div>
 </footer>
 
-<?= packer()->js([
+<?= packer()->js(array(
     'https://code.jquery.com/jquery-2.2.0.min.js',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
     '/js/custom.js'
-]); ?>
+)); ?>

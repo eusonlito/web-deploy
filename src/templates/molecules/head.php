@@ -9,9 +9,9 @@
 
 <?= meta()->tag('title'); ?>
 
-<?= packer()->css([
+<?= packer()->css(array(
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
     'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
     '/css/bootstrap-docs.min.css',
     '/css/custom.css'
-]); ?>
+)); ?>

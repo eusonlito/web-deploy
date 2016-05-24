@@ -9,7 +9,7 @@ class Admin extends Controller
 {
     protected function check($module = true, $repository = true)
     {
-        return parent::check(true, ['git', 'composer']);
+        return parent::check(true, array('git', 'composer'));
     }
 
     private function git()
