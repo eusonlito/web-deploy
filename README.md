@@ -22,7 +22,7 @@ $> composer install
 * Set write permissions to web service user to `storage/logs/` and `storage/assets/` folders
 * Configuration files are in `config/` folder
 * Create a copy into `config/custom/` to customize configurations
-* At first, copy `config/auth.php` into `config/custom/` and configure a basic auth user/password
+* At first, copy `config/middleware.php` into `config/custom/` and configure a basic auth user/password
 * Now you can login with http://yoursite.com/web-deploy/
 
 ## Images
