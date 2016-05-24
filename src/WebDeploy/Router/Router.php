@@ -16,26 +16,24 @@ class Router
         return $this;
     }
 
+    public function getMethod()
+    {
+        return $this->parsed['method'];
+    }
+
+    public function getController()
+    {
+        return $this->parsed['controller'];
+    }
+
+    public function getArguments()
+    {
+        return $this->parsed['arguments'];
+    }
+
     public function getRoute()
     {
         return strtolower($this->parsed['controller'].'-'.$this->parsed['method']);
-    }
-
-    public function toController()
-    {
-        $class = '\\WebDeploy\\Controller\\'.$this->parsed['controller'];
-
-        if (!class_exists($class)) {
-            throw new Exception\NotFoundException(__('Controller %s not exists', $this->parsed['controller']));
-        }
-
-        $class = new $class($this);
-
-        if (!method_exists($class, $this->parsed['method'])) {
-            throw new Exception\NotFoundException(__('Method %s in Controller %s not exists', $this->parsed['method'], $this->parsed['controller']));
-        }
-
-        return call_user_func_array(array($class, $this->parsed['method']), $this->parsed['arguments']);
     }
 
     private function parseUrl($url)
