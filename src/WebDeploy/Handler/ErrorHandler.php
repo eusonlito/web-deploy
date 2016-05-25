@@ -9,10 +9,24 @@ abstract class ErrorHandler
             return;
         }
 
-        die(self::printError($errno, $errstr, $errfile, $errline));
+        if (PHP_SAPI === 'cli') {
+            self::printCli($errno, $errstr, $errfile, $errline);
+        } else {
+            self::printHtml($errno, $errstr, $errfile, $errline);
+        }
+
+        exit;
     }
 
-    protected static function printError($errno, $errstr, $errfile, $errline)
+    protected static function printCli($errno, $errstr, $errfile, $errline)
+    {
+        echo "\n".$errstr."\n"
+            ."\n".'FILE: '.self::getFileName($errfile)
+            ."\n".'LINE: '.$errline
+            ."\n\n";
+    }
+
+    protected static function printHtml($errno, $errstr, $errfile, $errline)
     {
         template()->show('layout.error', array(
             'number' => $errno,
