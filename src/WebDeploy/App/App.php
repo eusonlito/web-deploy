@@ -1,6 +1,7 @@
 <?php
 namespace WebDeploy\App;
 
+use WebDeploy\Exception;
 use WebDeploy\Router\Router;
 
 class App
