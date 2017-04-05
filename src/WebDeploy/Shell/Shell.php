@@ -14,12 +14,12 @@ class Shell
 
     public static function check()
     {
-        if (!function_exists('shell_exec')) {
-            throw new Exception\BadFunctionCallException(__('PHP function <strong>shell_exec</strong> not exists'));
+        if (!function_exists('passthru')) {
+            throw new Exception\BadFunctionCallException(__('PHP function <strong>passthru</strong> not exists'));
         }
 
         if (in_array('exec', array_map('trim', explode(',', ini_get('disable_functions'))), true)) {
-            throw new Exception\BadFunctionCallException(__('PHP function <strong>shell_exec</strong> is marked as disabled'));
+            throw new Exception\BadFunctionCallException(__('PHP function <strong>passthru</strong> is marked as disabled'));
         }
     }
 
@@ -65,7 +65,7 @@ class Shell
         $success = $log.'.success';
         $error = $log.'.error';
 
-        shell_exec($this->getCMD($cmd).' > "'.$success.'" 2> "'.$error.'"');
+        passthru($this->getCMD($cmd).' > "'.$success.'" 2> "'.$error.'"');
 
         $this->logs[] = array(
             'command' => $cmd,
