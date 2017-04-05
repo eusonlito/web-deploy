@@ -16,7 +16,7 @@ class Route
         }
 
         self::$routes['server_name'] = getenv('SERVER_NAME');
-        self::$routes['document_root'] = rtrim(getenv('DOCUMENT_ROOT'), '/');
+        self::$routes['document_root'] = rtrim(realpath(getenv('DOCUMENT_ROOT')), '/');
         self::$routes['base_path'] = WD_BASE_PATH;
         self::$routes['libs_path'] = WD_LIBS_PATH;
         self::$routes['public_path'] = preg_replace('|^'.self::$routes['document_root'].'|i', '', self::$routes['base_path']) ?: '/';
