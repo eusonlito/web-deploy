@@ -83,19 +83,21 @@
         <div class="panel-body">
             <div class="input-group form-group">
                 <select name="commit-hash" class="form-control">
+                    <option value="."><?= __('Sync with last fetched code'); ?></option>
+
                     <?php foreach ($log as $line) { ?>
                     <option value="<?= $line['hash']; ?>"><?= $line['hash'].' - '.$line['message']; ?></option>
                     <?php } ?>
                 </select>
 
                 <span class="input-group-btn">
-                    <button type="submit" name="processor" value="git-revert" class="btn btn-warning">
-                        <?= __('Git REVERT'); ?>
+                    <button type="submit" name="processor" value="git-checkout" class="btn btn-warning">
+                        <?= __('Git CHECKOUT'); ?>
                     </button>
                 </span>
             </div>
 
-            <?= isset($processor['git-revert']) ? shellResponse($processor['git-revert']) : ''; ?>
+            <?= isset($processor['git-checkout']) ? shellResponse($processor['git-checkout']) : ''; ?>
         </div>
     </div>
 
