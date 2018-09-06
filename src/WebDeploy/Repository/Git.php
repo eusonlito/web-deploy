@@ -85,29 +85,29 @@ class Git extends Repository
         return $this->exec('git diff '.$file);
     }
 
-    public function logSimple()
+    public function logSimple($limit)
     {
-        return $this->exec('git log --date=iso --pretty=format:"%h %cd [%an] %s"');
+        return $this->exec('git log --max-count='.(int)$limit.' --date=iso --pretty=format:"%h %cd [%an] %s"');
     }
 
-    public function getLogSimple()
+    public function getLogSimple($limit)
     {
-        return $this->logSimple()->getShellAndLog();
+        return $this->logSimple($limit)->getShellAndLog();
     }
 
-    public function logStat($n)
+    public function logStat($limit)
     {
-        return $this->exec('git log --stat -n '.(int)$n);
+        return $this->exec('git log --stat --max-count='.(int)$limit);
     }
 
-    public function getLogStat($n)
+    public function getLogStat($limit)
     {
-        return $this->logStat($n)->getShellAndLog();
+        return $this->logStat($limit)->getShellAndLog();
     }
 
-    public function getLogSimpleList()
+    public function getLogSimpleList($limit = 100)
     {
-        $log = (new self($this->path))->getLogSimple()['success'];
+        $log = (new self($this->path))->getLogSimple($limit)['success'];
 
         if (empty($log)) {
             return array();
