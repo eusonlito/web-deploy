@@ -26,7 +26,7 @@ class Composer extends Repository
 
     public function install()
     {
-        return $this->exec('composer install');
+        return $this->exec('composer install --optimize-autoloader --no-dev');
     }
 
     public function getInstall()
